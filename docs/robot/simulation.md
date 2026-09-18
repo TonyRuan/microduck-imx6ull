@@ -97,8 +97,21 @@ it does not reload policies or change the simulated body.
 | J / K | Left / right kick, once per press |
 | Esc | Stop walking; an already accepted skill finishes under the policy |
 
-Sliders set forward speed (0–0.30 m/s), backward speed (0–0.20 m/s), and turn speed
-(0–1.0 rad/s). Defaults are 0.10, 0.08, and 0.40. Opposite direction keys cancel.
+Sliders set forward and backward speed (each 0–0.40 m/s), and turn speed (0–1.0 rad/s).
+The default **仿真实测** preset is 0.30 forward, 0.40 backward, and 0.40 turn;
+**低速试探** restores 0.10, 0.08, and 0.40 for low-speed exploration. Selecting a preset
+stops movement and requires held direction keys to be released and pressed again.
+Preset buttons also support Tab to focus and Enter to activate (Space always rolls).
+These are command speeds, not measured speeds or hardware limits. The limits match the
+local RL velocity-task configuration's longitudinal ±0.40 m/s and yaw ±1.0 rad/s ranges;
+that configuration does not certify the loaded alpha policy's training range or tracking.
+
+With `alpha_walking.onnx` in the local simulator, four-second tests at backward commands
+0.08, 0.15, 0.20, and 0.30 m/s barely displaced the duck. At 0.40 it walked about 0.65 m
+backward but also drifted about 0.25 m sideways; forward 0.30 moved about 0.44 m.
+These are observations, not universal gait thresholds or guarantees on a real robot.
+The panel warns about low nonzero speeds and reverse drift; it never silently boosts a
+slider setting or reloads the policy. Opposite direction keys cancel.
 Release a direction key to stop that direction. On a skill press, held direction keys are
 ignored until released and pressed again. Clicking the skill buttons also works.
 

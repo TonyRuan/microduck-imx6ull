@@ -7,10 +7,32 @@ import threading
 import time
 import unittest
 
-from duck_keyboard import Controls, LEASE, Link, RobotClient, RpcError, SKILLS
+from duck_keyboard import (Controls, LEASE, Link, RobotClient, RpcError, SKILLS,
+                           SPEED_LIMITS, SPEED_PRESETS, speed_hint)
 
 
 class InputTests(unittest.TestCase):
+    def test_speed_presets_and_reverse_limit(self):
+        self.assertEqual(SPEED_LIMITS, (.4, .4, 1.0))
+        for speeds in SPEED_PRESETS.values():
+            for value, limit in zip(speeds, SPEED_LIMITS):
+                self.assertTrue(0 <= value <= limit)
+        controls = Controls()
+        controls.press("s")
+        self.assertEqual(controls.twist(*SPEED_PRESETS["仿真实测"]), (-.4, 0))
+        # Changing a preset must not accelerate an already held direction key.
+        controls.block_movement()
+        self.assertEqual(controls.twist(*SPEED_PRESETS["仿真实测"]), (0, 0))
+        controls.release("s")
+        controls.press("s")
+        self.assertEqual(controls.twist(*SPEED_PRESETS["仿真实测"]), (-.4, 0))
+
+    def test_low_speed_hint_and_drift_warning(self):
+        for forward, backward in [(.1, .4), (.3, .08), (.3, .3), (.3, .39)]:
+            self.assertIn("低速可能不迈步", speed_hint(forward, backward))
+        self.assertIn("侧偏", speed_hint(.3, .4))
+        self.assertNotIn("低速可能不迈步", speed_hint(0, 0))
+
     def test_motion_and_opposites(self):
         controls = Controls()
         controls.press("w")
@@ -111,6 +133,13 @@ class WireTests(unittest.TestCase):
         request = self.exchange({"id": 1, "result": {"accepted": True}}, lambda client: client.move(.12, -.4))
         self.assertEqual(request["method"], "robot.move")
         self.assertEqual(request["params"], {"vx": .12, "vy": 0, "vyaw": -.4})
+
+    def test_reverse_preset_wire_contract(self):
+        controls = Controls()
+        controls.press("s")
+        request = self.exchange({"id": 1, "result": {"accepted": True}},
+                                lambda client: client.move(*controls.twist(*SPEED_PRESETS["仿真实测"])))
+        self.assertEqual(request["params"], {"vx": -.4, "vy": 0, "vyaw": 0})
 
     def test_skill_refusal_is_not_success(self):
         with self.assertRaisesRegex(RpcError, "policy"):
