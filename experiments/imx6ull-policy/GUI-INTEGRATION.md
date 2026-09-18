@@ -1,5 +1,8 @@
 # Keyboard backend integration — 2026-09-19
 
+The walk-only limitations in this historical integration record were superseded by
+the [all-action follow-up](ALL-ACTIONS.md).
+
 Imported keyboard worktree commits `644c804` and `7edce66` as `fd61da0` and
 `342b17a`, then extended the panel with owned Mac / i.MX6ULL backend sessions.
 User instructions belong to [Keyboard control](../../docs/robot/simulation.md#keyboard-control);

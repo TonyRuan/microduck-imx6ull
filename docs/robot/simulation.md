@@ -87,8 +87,28 @@ on TCP port 7801.
 Double-click `Start Keyboard.command`, or run `scripts/duck-sim keyboard`.
 The Tk panel starts its own MuJoCo body and Mac controller. The left sidebar switches
 between **Mac 本地** (ONNX Runtime) and **嵌入式 i.MX6ULL** (board FP32 controller).
-Both managed backends use `velstand`; sensors and actuator output remain in the Mac
-simulator. This does not drive physical motors.
+Both managed backends offer the same complete action set; sensors and actuator output
+remain in the Mac simulator. This does not drive physical motors.
+
+Choose **策略组合** and click **启动 / 切换后端** to apply it:
+
+- **默认步态 + 全部动作**: velstand walking/idle, sit/stand, kicks, roll and ground-pick.
+- **独立站立 + Alpha 行走**: dedicated standing network at rest and alpha walking on movement,
+  with the same skills.
+- **轮式 + 蹲伏（实验）**: wheeled scene and roller actor; P crouches instead of ground-picking.
+  Foot-trained kicks/rolls are disabled in this profile. Roller stability has **not**
+  passed acceptance on either backend; use the walking profiles for validated actions.
+
+Prepare all ten models once using the RL environment (requires ONNX, ONNX Runtime and NumPy):
+
+```sh
+../microduck_rl/.venv/bin/python experiments/imx6ull-policy/prepare_policies.py
+```
+
+By default the source is `~/.cache/duck-sim/policies/current`; use `--models` for another
+complete v5 source directory. The panel reads the generated `out/policies` bundle;
+`DUCK_TELEOP_POLICIES` can point to another generated bundle, not a raw ONNX cache.
+See [full-model verification and limitations](../../experiments/imx6ull-policy/ALL-ACTIONS.md).
 
 Select the board's USB serial device, enter its `debian` login password and click
 **启动 / 切换后端**. With **记住密码（钥匙串）** checked (the macOS default), a successful
@@ -137,6 +157,7 @@ or inspect connection errors. Closing the mini window performs the normal backen
 | Ctrl | Sit / stand toggle, once per press |
 | Space | Forward roll, once per press |
 | J / K | Left / right kick, once per press |
+| P | Ground-pick; crouch in the roller profile |
 | Esc | Stop walking; an already accepted skill finishes under the policy |
 
 Sliders set forward and backward speed (each 0–0.40 m/s), and turn speed (0–1.0 rad/s).
@@ -159,9 +180,8 @@ walking while 0.40 could start it; this issue remains, as does the startup homin
 The panel shows a policy-specific warning and never silently boosts a slider setting.
 Opposite direction keys cancel.
 Release a direction key to stop that direction. On a skill press, held direction keys are
-ignored until released and pressed again. Clicking the skill buttons also works. Board
-mode disables sit/stand, roll and kicks because those models have not been ported; Mac
-mode enables only optional skill models found in the local policy cache. Typing in the
+ignored until released and pressed again. Clicking the skill buttons also works. Both
+managed backends enable the profile's skill buttons only after model loading succeeds. Typing in the
 password field or selecting a backend/device never issues movement or skill commands.
 
 The panel sends velocity at 20 Hz. Losing focus clears the input; a UI heartbeat older than

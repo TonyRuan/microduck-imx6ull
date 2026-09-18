@@ -13,7 +13,7 @@ import threading
 import time
 
 
-SKILLS = {"ctrl": "sit_toggle", "space": "roulade", "j": "kick_left", "k": "kick_right"}
+SKILLS = {"ctrl": "sit_toggle", "space": "roulade", "j": "kick_left", "k": "kick_right", "p": "ground_pick"}
 KEYS = {"w", "a", "s", "d", *SKILLS}
 TICK = 0.05
 LEASE = 0.25
@@ -24,6 +24,8 @@ SPEED_PRESETS = {"仿真实测": (0.30, 0.40, 0.40), "低速试探": (0.10, 0.08
 
 
 def speed_hint(forward, backward, policy='alpha'):
+    if policy == 'roller':
+        return '轮式实验：P 为蹲伏；不支持足式踢球／翻滚。稳定性尚未通过验收。'
     if policy == 'velstand':
         return 'velstand 低速起步可能原地踏步；前进 0.40 m/s 已验证可起步。指令速度不等于实际速度。'
     if 0 < forward < 0.30 or 0 < backward < 0.40:
@@ -209,7 +211,7 @@ def run_gui(path=None, rl=None, viewer=True):
     style.map("TButton", background=[("active", "#c4edb9")])
     style.configure("Horizontal.TScale", background="#eff4f2", troughcolor="#d4dfda")
     controls = Controls()
-    from duck_backends import ManagedClient, board_ports
+    from duck_backends import ManagedClient, board_ports, PROFILES
     managed = ManagedClient(rl or Path(__file__).resolve().parents[2]/'microduck_rl', viewer) if path is None else None
     link = Link(managed or RobotClient(path))
     connected = False
@@ -222,8 +224,11 @@ def run_gui(path=None, rl=None, viewer=True):
     presets_for_policy = {'步态起步': (0.40, 0.40, 0.40), '低速试探': SPEED_PRESETS['低速试探']} if managed else SPEED_PRESETS
     default_speeds = next(iter(presets_for_policy.values()))
     forward, backward, turn = [tk.DoubleVar(value=value) for value in default_speeds]
+    policy_choice = tk.StringVar(value=PROFILES['velstand'][0])
+    def selected_policy():
+        return next(name for name, profile in PROFILES.items() if profile[0] == policy_choice.get())
     def current_speed_hint():
-        return speed_hint(forward.get(), backward.get(), 'velstand' if managed else 'alpha')
+        return speed_hint(forward.get(), backward.get(), managed.policy_profile if managed else 'alpha')
     speed_text = tk.StringVar(value=current_speed_hint())
     backend = tk.StringVar(value='Mac 本地')
     usb_port = tk.StringVar(value=next(iter(board_ports()), ''))
@@ -254,6 +259,10 @@ def run_gui(path=None, rl=None, viewer=True):
     text(sidebar, '运控后端', size=22, anchor='w').pack(fill='x', pady=(8,16))
     selector = ttk.Combobox(sidebar, textvariable=backend, values=['Mac 本地', '嵌入式 i.MX6ULL'], state='readonly')
     selector.pack(fill='x')
+    text(sidebar, '策略组合（切换后生效）', size=11, anchor='w').pack(fill='x', pady=(10,4))
+    policy_selector = ttk.Combobox(sidebar, textvariable=policy_choice,
+                                   values=[profile[0] for profile in PROFILES.values()], state='readonly')
+    policy_selector.pack(fill='x')
     text(sidebar, '切换会先停步，并重置本面板的仿真。\n不会接管其他窗口的模拟器。', size=11, justify='left', wraplength=260).pack(fill='x', pady=12)
     text(sidebar, '开发板 USB 串口', size=12, anchor='w').pack(fill='x', pady=(10,5))
     ports_widget = ttk.Combobox(sidebar, textvariable=usb_port, values=board_ports(), state='readonly')
@@ -293,9 +302,10 @@ def run_gui(path=None, rl=None, viewer=True):
     switch_button.pack(fill='x', pady=8)
     text(sidebar, variable=backend_text, size=12, anchor='w', wraplength=265, justify='left').pack(fill='x', pady=12)
     text(sidebar, variable=health_text, size=13, anchor='w', wraplength=265).pack(fill='x', pady=10)
-    text(sidebar, '硬件在环：传感器与电机输出由 Mac 模拟器提供，不驱动真实电机。\n\n两端使用 velstand；板端暂不支持坐站、翻滚、踢球。低速起步和回零前倾问题仍存在。', size=11, anchor='w', wraplength=265, justify='left').pack(fill='x', pady=12)
+    text(sidebar, '硬件在环：传感器与电机输出由 Mac 模拟器提供，不驱动真实电机。\n两端支持全部模型；轮式组合会切换带轮场景。', size=11, anchor='w', wraplength=265, justify='left').pack(fill='x', pady=6)
     if not managed:
         selector.configure(state='disabled')
+        policy_selector.configure(state='disabled')
         switch_button.configure(state='disabled')
         backend_text.set('外部 socket 模式：不管理后端')
     main = tk.Frame(outer, bg="#eff4f2", padx=22, pady=14)
@@ -412,7 +422,8 @@ def run_gui(path=None, rl=None, viewer=True):
                 status.set('请输入开发板密码再连接')
                 return
             managed.select(kind, usb_port.get(), password if kind == 'board' else '',
-                           remember=remember_password.get())
+                           remember=remember_password.get(), policy_profile=selected_policy())
+            speed_text.set(current_speed_hint())
             if kind == 'board': board_password.set('')
             busy = True
             switch_button.configure(state='disabled')
@@ -423,6 +434,9 @@ def run_gui(path=None, rl=None, viewer=True):
         link.connect_requested.set()
 
     ttk.Button(footer, text="停止行走  Esc", command=stop, takefocus=False).pack(side="left")
+    pick_button = ttk.Button(footer, text='P  捡拾 / 轮式蹲伏', command=lambda: perform('ground_pick'), takefocus=False)
+    pick_button.pack(side='left', padx=8)
+    skill_buttons['ground_pick'] = pick_button
     ttk.Button(footer, text="重新连接", command=reconnect, takefocus=False).pack(side="right")
     text(main, "松开方向键即停止；切换窗口自动停止。\n只在本窗口接收按键，可组合 W+A / W+D 转弯。", size=11,
          color="#648078", justify="left", anchor="w").pack(fill="x", pady=(8, 4))

@@ -6,12 +6,13 @@
 
 ## 本仓库新增
 
-- **i.MX6ULL 步态推理**：将 `velstand` FP32 网络专门化为 C/NEON 实现并在野火开发板上验证；
-  这不是通用 ONNX Runtime 的 ARM 移植。见[推理实测报告](experiments/imx6ull-policy/RESULTS.md)。
+- **i.MX6ULL 全动作推理**：将当前 v5 策略集的 10 个 FP32 网络专门化为 C/NEON 实现并在野火开发板上验证；
+  这不是通用 ONNX Runtime 的 ARM 移植。见[全动作移植实测](experiments/imx6ull-policy/ALL-ACTIONS.md)。
 - **完整运控硬件在环**：真实开发板运行 `robotd` 控制链路，Mac 上的 MuJoCo 提供模拟传感器和电机响应。
   见[闭环实测与边界](experiments/imx6ull-policy/HIL.md)。
 - **Mac 键盘遥控 GUI**：支持 Mac / 板端后端切换、USB 与控制服务状态、速度预设、钥匙串记住密码，
-  以及 340×200 置顶迷你模式。见[启动和操作说明](docs/robot/simulation.md#keyboard-control)。
+  三组策略配置、P 键捡拾／轮式蹲伏，以及 340×200 置顶迷你模式。
+  见[启动和操作说明](docs/robot/simulation.md#keyboard-control)。
 
 ## 当前验证范围
 
@@ -19,7 +20,9 @@
 性能口径与数据见 [HIL 报告](experiments/imx6ull-policy/HIL.md#measurements)。
 **真实电机与物理传感器尚未验证**，也不代表原版机器人的全部功能已经移植到这块板。
 
-板端目前只支持 `velstand` 步态，坐站、翻滚和踢球等可选动作尚未移植；
+板端现已接入站立、行走、坐起、翻滚、左右踢球、捡拾及轮式／蹲伏模型；
+**足式动作通过短时闭环测试，轮式稳定性尚未通过验收**，仍保留为实验模式。
+模型一致性、闭环动作切换与真实物理任务成功是不同的验收层级，见[验证范围](experiments/imx6ull-policy/ALL-ACTIONS.md)。
 低速起步困难与启动回零前倾仍未解决，见[行为诊断](experiments/imx6ull-policy/DIAGNOSIS.md)。
 本仓库的 GitHub Actions 当前未启用；下方 CI 徽章仅代表上游仓库。
 
@@ -28,6 +31,7 @@
 - 使用键盘面板：[环境准备、启动与后端切换](docs/robot/simulation.md#keyboard-control)。
 - 复现移植实验：[推理构建](experiments/imx6ull-policy/README.md)与[完整闭环构建](experiments/imx6ull-policy/HIL.md#build-and-repeat)。
 - 查看 GUI 集成与回归验证：[测试记录](experiments/imx6ull-policy/GUI-INTEGRATION.md)。
+- 查看硬件降本参考：[CPU、RAM 与存储实测](experiments/imx6ull-policy/RESOURCE-USAGE.md)。
 
 ---
 

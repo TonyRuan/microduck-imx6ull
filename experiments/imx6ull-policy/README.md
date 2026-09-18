@@ -1,8 +1,9 @@
 # i.MX6ULL gait inference and hardware-in-the-loop
 
-This experiment runs the real `velstand.onnx` from the repository's pinned
-`pollen-robotics/microduck-policies` v5 set on an Embedfire i.MX6ULL. It specializes
-that graph to FP32 C with ARM NEON: normalization, four dense layers, and three
+This experiment initially ran `velstand.onnx` and now supports all ten actors from
+the repository's pinned `pollen-robotics/microduck-policies` v5 set on an Embedfire
+i.MX6ULL. It specializes their shared graph to FP32 C with ARM NEON:
+normalization, four dense layers, and three
 ELU activations. Weights are unchanged; there is no quantization or retraining.
 
 **This is not an ONNX Runtime port.** The original standalone benchmark below
@@ -12,6 +13,13 @@ in [HIL.md](HIL.md), including their unresolved locomotion failure. The robot's
 control loop remains defined in [robotd-design.md](../../docs/design/robotd-design.md).
 
 ## Files and contract
+
+The full-model follow-up, preparation and verification commands are documented in
+[ALL-ACTIONS.md](ALL-ACTIONS.md). The single-model commands and results below are
+the original baseline, not a restriction on the current panel.
+
+For hardware sizing, see the separate [CPU, RAM and storage measurement](RESOURCE-USAGE.md).
+That full-controller run is not the actor-only benchmark below.
 
 - `policy.h` / `policy.c`: load the specialized weight file and infer 61 floats
   to 14 actions, preserving the project's observation/action order. No heap

@@ -1,0 +1,58 @@
+{
+  "recorded_date": "2026-09-19",
+  "scope": "Real i.MX6ULL robotd with Mac MuJoCo sensors/actuators; alpha profile with seven resident actors; no physical motor IO",
+  "provenance": "Aggregates from the bounded temporary /proc sampler during this session; raw samples are not committed",
+  "sample_count": 49,
+  "interval_count": 48,
+  "window_s": 51.78,
+  "clk_tck": 100,
+  "cpu": {
+    "cores": 1,
+    "core": "Cortex-A7",
+    "architecture": "ARMv7-A",
+    "extensions": ["NEON", "VFPv4"],
+    "governor": "ondemand",
+    "available_khz": [198000, 396000, 528000, 792000],
+    "frequency_sample_counts_khz": {"792000": 49},
+    "percent": {
+      "robotd-hil": {"mean": 35.206, "min": 34.259, "max": 36.449},
+      "hil-proxy": {"mean": 10.081, "min": 9.259, "max": 11.111},
+      "system_busy": {"mean": 54.599, "min": 52.778, "max": 56.14},
+      "system_iowait": {"mean": 0.0, "min": 0.0, "max": 0.0}
+    }
+  },
+  "memory_kib": {
+    "physical": 524288,
+    "linux_total": 498336,
+    "available": {"mean": 365858.694, "min": 365816, "max": 365908},
+    "cma_total": 327680,
+    "cma_free": {"mean": 227665.959, "min": 227564, "max": 227764},
+    "robotd_rss_smaps": {"mean": 9621.469, "min": 9588, "max": 9652},
+    "robotd_pss_smaps": {"mean": 9609.469, "min": 9576, "max": 9640},
+    "robotd_vmrss_status": 8440,
+    "robotd_vmsize_status": 16328,
+    "hil_proxy_rss_smaps": 52
+  },
+  "storage": {
+    "type": "eMMC",
+    "device_name": "8GTF4R",
+    "user_area_bytes": 7818182656,
+    "robotd_bytes": 5052584,
+    "hil_proxy_bytes": 1316016,
+    "model_count": 10,
+    "bytes_per_model": 791592,
+    "root_used_kib": 616332,
+    "boot_used_kib": 18422
+  },
+  "health": {
+    "sampled_hz_min": 49.680274298148454,
+    "sampled_hz_max": 50.034468156472194,
+    "first_missed": 2,
+    "last_missed": 21,
+    "first_ticks": 212,
+    "last_ticks": 2715,
+    "first_to_last_health_s_approx": 50,
+    "reported_bus_errors": 0,
+    "reported_stale_imu_blocks": 0
+  }
+}

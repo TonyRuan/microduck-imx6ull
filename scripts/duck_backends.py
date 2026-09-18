@@ -19,8 +19,10 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENT = ROOT / "experiments/imx6ull-policy"
+BOARD_DIR = '/home/debian/microduck-policy-bench/gui'
 sys.path.insert(0, str(EXPERIMENT))
 from serial_shell import SerialShell
+from policy_bundle import MODEL_NAMES, PROFILES, checked_bundle, controller_config, slots, skills_for
 
 
 def board_ports():
@@ -74,6 +76,9 @@ class Session:
         self.sock = self.directory / 'robot.sock'
         self.skills = set()
         self.truth = None
+        self.state = None
+        self.policy_profile = 'velstand'
+        self.bundle = Path(os.environ.get('DUCK_TELEOP_POLICIES', str(EXPERIMENT/'out/policies')))
 
     def check(self):
         if self.cancel.is_set():
@@ -94,14 +99,23 @@ class Session:
         env = os.environ.copy()
         env['PYTHONPATH'] = str(self.rl / 'src') + os.pathsep + env.get('PYTHONPATH', '')
         argv = [str(python), '-m', 'mjlab_microduck.sim.body_server', '--port', str(self.port), '--keyframe', 'HOME']
+        scene_args = []
+        if getattr(self, 'policy_profile', 'velstand') == 'roller':
+            scene_args = ['--scene', str(self.rl/'src/mjlab_microduck/robot/microduck/scene_rollers.xml')]
+            argv = [str(python), str(ROOT/'scripts/duck_roller_body.py'), '--port', str(self.port), '--keyframe', 'HOME']
+        argv += scene_args
         if not self.viewer:
             argv.append('--headless')
         elif sys.platform == 'darwin':
             # Process-local Cocoa defaults avoid the crash-recovery modal blocking
             # GLFW before Python starts. Do not alter the user's saved preferences.
             body_args = ['body_server', '--port', str(self.port), '--keyframe', 'HOME']
+            body_args += scene_args
             bootstrap = ('import runpy,sys;sys.argv=' + repr(body_args) +
                          ';runpy.run_module("mjlab_microduck.sim.body_server",run_name="__main__")')
+            if getattr(self, 'policy_profile', 'velstand') == 'roller':
+                bootstrap = ('import runpy,sys;sys.argv=' + repr(body_args) +
+                             ';runpy.run_path('+repr(str(ROOT/'scripts/duck_roller_body.py'))+',run_name="__main__")')
             argv = [str(python), '-c', bootstrap, '-ApplePersistenceIgnoreState', 'YES',
                     '-NSQuitAlwaysKeepsWindows', 'NO']
         self.body = self.spawn(argv, 'body', env)
@@ -123,27 +137,8 @@ class Session:
         binary = ROOT / 'target/debug/robotd'
         if not binary.exists():
             raise OSError('缺少 Mac robotd，请先运行 cargo build -p robotd')
-        policies = Path(os.environ.get('DUCK_TELEOP_POLICIES', str(Path.home()/'.cache/duck-sim/policies/current')))
-        walk = EXPERIMENT / 'out/velstand.onnx'
-        if not walk.exists():
-            walk = policies / 'velstand.onnx'
-        if not walk.exists():
-            raise OSError('缺少 velstand.onnx，请按 HIL.md 准备模型')
-        config = '[policy]\nenabled = true\nwalk = ' + json.dumps(str(walk)) + '\nstand = "none"\n'
-        for slot, filename, skill in [
-            ('sitstand', 'alpha_sitstand.onnx', 'sit_toggle'),
-            ('ground_pick', 'alpha_ground_pick.onnx', 'ground_pick'),
-            ('kick_left', 'ball_kick_left.onnx', 'kick_left'),
-            ('kick_right', 'ball_kick_right.onnx', 'kick_right'),
-            ('roulade', 'roulade.onnx', 'roulade'),
-        ]:
-            model = policies / filename
-            config += f'{slot} = ' + json.dumps(str(model) if model.exists() else 'none') + '\n'
-            if model.exists():
-                self.skills.add(skill)
-        config += '\n[audio]\nenabled = false\npet_detect = false\n[chorale]\naccept = false\n'
         params = self.directory / 'robotd.toml'
-        params.write_text(config)
+        params.write_text(controller_config(self.policy_profile, self.bundle))
         env = os.environ.copy()
         if 'ORT_DYLIB_PATH' not in env:
             candidates = list((self.rl/'.venv/lib').glob('python*/site-packages/onnxruntime/capi/libonnxruntime*.dylib'))
@@ -162,13 +157,13 @@ class Session:
         self.shell = SerialShell(password, port=port, cancel=self.cancel)
         if 'BUSY' in self.shell.command("awk '$2 ~ /:1E8B$/ && $4 == \"0A\" {print \"BUSY\"}' /proc/net/tcp"):
             raise OSError('开发板 7819 端口正被使用；请先停止其他 HIL 会话')
-        self.progress('校验并部署 ARM 控制程序和步态模型…')
-        board = '/home/debian/microduck-policy-bench/gui'
+        self.progress('校验并部署 ARM 控制程序和全部 10 个模型…')
+        board = BOARD_DIR
         self.shell.command(f'mkdir -p {board}')
         import hashlib
         for source, dest in [(EXPERIMENT/'out/robotd-hil', 'robotd-hil'),
-                             (EXPERIMENT/'out/hil-proxy', 'hil-proxy'),
-                             (EXPERIMENT/'out/weights.bin', 'velstand.duckmlp')]:
+                             (EXPERIMENT/'out/hil-proxy', 'hil-proxy')] + [
+                             (self.bundle/(name+'.duckmlp'), name+'.duckmlp') for name in MODEL_NAMES]:
             self.check()
             if not source.exists():
                 raise OSError(f'缺少 {source.name}，请先按 HIL.md 构建')
@@ -176,8 +171,7 @@ class Session:
             if digest not in self.shell.command(f'sha256sum {board}/{dest} 2>/dev/null'):
                 self.shell.upload(source, f'{board}/{dest}')
         params = self.directory / 'robotd.toml'
-        params.write_text((EXPERIMENT/'robotd-hil.toml').read_text().replace(
-            '/home/debian/microduck-policy-bench/velstand.duckmlp', board+'/velstand.duckmlp'))
+        params.write_text(controller_config(self.policy_profile, board, native=True))
         self.shell.upload(params, board+'/robotd.toml')
         self.shell.command(f'chmod +x {board}/robotd-hil {board}/hil-proxy')
         self.sim = socket.create_connection(('127.0.0.1', self.port), timeout=1)
@@ -235,6 +229,8 @@ class Session:
                         self.sim.sendall(line[2:]+b'\n')
                     elif line.startswith(b'I\t'):
                         answer = json.loads(line[2:])
+                        if answer.get('method') == 'robot.state':
+                            self.state = answer['params']
                         entry = pending.pop(answer.get('id'), None)
                         if entry and not entry[0].done(): entry[0].set_result(answer)
                     elif line == b'R\tstopped':
@@ -289,6 +285,7 @@ class Session:
         return result
 
     def start(self, port='', password=''):
+        checked_bundle(self.bundle)
         self.start_body()
         if self.kind == 'mac': self.start_mac()
         else: self.start_board(port, password)
@@ -298,6 +295,9 @@ class Session:
             try:
                 health = self.call('robot.health')
                 if health.get('healthy') and health.get('imu', {}).get('ready'):
+                    report = self.call('robot.policies')
+                    self.validate_policies(report)
+                    self.skills = skills_for(self.policy_profile)
                     self.call('robot.enable', {'on': True})
                     self.progress('控制已启用，等待启动回零完成…')
                     for _ in range(30):
@@ -309,6 +309,15 @@ class Session:
                     raise OSError('robotd 启动失败，查看 '+str(self.directory/'robotd.log'))
             time.sleep(.1)
         raise OSError('控制器健康检查未通过')
+
+    def validate_policies(self, report):
+        loaded = {slot['slot']: slot for slot in report['slots']}
+        for slot, name in slots(self.policy_profile).items():
+            directory = self.bundle if self.kind == 'mac' else Path(BOARD_DIR)
+            expected = str(directory/(name + ('.onnx' if self.kind == 'mac' else '.duckmlp'))) if name else None
+            actual = loaded.get(slot, {})
+            if slot not in loaded or actual.get('error') or actual.get('path') != expected:
+                raise ValueError(f'策略未加载：{slot} ({name})')
 
     def close(self):
         try:
@@ -352,9 +361,12 @@ class ManagedClient:
         self.events = queue.SimpleQueue()
         self.skills = set()
         self.active_kind = None
+        self.policy_profile = 'velstand'
 
-    def select(self, kind, port='', password='', remember=False):
+    def select(self, kind, port='', password='', remember=False, policy_profile='velstand'):
         if kind not in {'mac', 'board'}: raise ValueError('unknown backend')
+        if policy_profile not in PROFILES: raise ValueError('unknown policy profile')
+        self.policy_profile = policy_profile
         self.profile = (kind, port, password)
         self.remember = remember
 
@@ -370,6 +382,7 @@ class ManagedClient:
                 raise OSError('未找到已保存密码，请输入开发板密码再连接')
             self.session = Session(kind, self.rl, self.viewer, self.cancel,
                                    lambda message: self.events.put(('progress', message)))
+            self.session.policy_profile = self.policy_profile
             self.session.start(port, password)
             if kind == 'board' and self.remember:
                 # Failed authentication never overwrites a working saved credential.
@@ -381,7 +394,7 @@ class ManagedClient:
             self.active_kind = kind
             self.skills = self.session.skills.copy()
             viewing = '3D 窗口' if self.session.viewer else '无 3D 窗口（重连可恢复）'
-            self.events.put(('ready', f'{"Mac / ONNX" if kind=="mac" else "i.MX6ULL / FP32"} · velstand · {viewing} · 日志 {self.session.directory}'))
+            self.events.put(('ready', f'{"Mac / ONNX" if kind=="mac" else "i.MX6ULL / FP32"} · {PROFILES[self.policy_profile][0]} · {viewing} · 日志 {self.session.directory}'))
         except Exception as error:
             self.disconnect()
             raise OSError(str(error)) from error

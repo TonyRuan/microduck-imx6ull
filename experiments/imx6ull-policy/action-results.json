@@ -1,0 +1,2884 @@
+{
+  "mac": {
+    "recorded_at": "2026-09-18T20:12:36.187788+00:00",
+    "backend": "mac",
+    "scope": "MuJoCo action transitions, not physical task completion",
+    "profiles": {
+      "velstand": {
+        "policies": {
+          "enabled": true,
+          "homed": true,
+          "mode": "walk",
+          "sitting": false,
+          "skills": [
+            "roulade",
+            "kick_left",
+            "kick_right"
+          ],
+          "slots": [
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/velstand.onnx",
+              "slot": "walk"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "stand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/alpha_sitstand.onnx",
+              "slot": "sitstand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/alpha_ground_pick.onnx",
+              "slot": "ground_pick"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/ball_kick_left.onnx",
+              "slot": "kick_left"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/ball_kick_right.onnx",
+              "slot": "kick_right"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/roulade.onnx",
+              "slot": "roulade"
+            }
+          ]
+        },
+        "logs": "/var/folders/79/85_nvpc15nb2sqkdzmk1k0m80000gn/T/duck-teleop-flt9jq2a",
+        "stages": [
+          {
+            "name": "idle",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 34
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.93425122872111,
+                "last_tick_age_ms": 3,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 313
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 34,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 0.8024271113933995,
+            "final_tilt_deg": 0.6544020375221105,
+            "final_fallen": false,
+            "target_range_rad": 0.019030695098140676
+          },
+          {
+            "name": "walk",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.02369382066383,
+                "last_tick_age_ms": 20,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 464
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 3.577387991906256,
+            "final_tilt_deg": 3.136630910815764,
+            "final_fallen": false,
+            "target_range_rad": 1.3235011083213515
+          },
+          {
+            "name": "stop",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 17
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.22683324248185,
+                "last_tick_age_ms": 8,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 516
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 17,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 3.5033644080904582,
+            "final_tilt_deg": 0.4727674293220483,
+            "final_fallen": false,
+            "target_range_rad": 0.8799612104829573
+          },
+          {
+            "name": "sit",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 1,
+              "sit": 49
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.972608763821334,
+                "last_tick_age_ms": 6,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 668
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": true,
+            "sample_count": 50,
+            "expected_label": "sit",
+            "transition_passed": true,
+            "max_tilt_deg": 5.786430438624304,
+            "final_tilt_deg": 1.5557530496330267,
+            "final_fallen": false,
+            "target_range_rad": 1.4938314494964389
+          },
+          {
+            "name": "rise",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "sit": 1,
+              "rise": 17,
+              "walk": 33
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.94335268253718,
+                "last_tick_age_ms": 21,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 819
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 51,
+            "expected_label": "rise",
+            "transition_passed": true,
+            "max_tilt_deg": 4.202731830918149,
+            "final_tilt_deg": 0.6274885072434833,
+            "final_fallen": false,
+            "target_range_rad": 1.8385249080869621
+          },
+          {
+            "name": "kick_left",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 26,
+              "kick_left": 8
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.954017327050444,
+                "last_tick_age_ms": 15,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 923
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 34,
+            "expected_label": "kick_left",
+            "transition_passed": true,
+            "max_tilt_deg": 4.031378637502727,
+            "final_tilt_deg": 0.7406550749127445,
+            "final_fallen": false,
+            "target_range_rad": 2.105053185192839
+          },
+          {
+            "name": "kick_right",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 26,
+              "kick_right": 9
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.16187038861188,
+                "last_tick_age_ms": 6,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1027
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 35,
+            "expected_label": "kick_right",
+            "transition_passed": true,
+            "max_tilt_deg": 3.8027360681922273,
+            "final_tilt_deg": 0.7033088184610214,
+            "final_fallen": false,
+            "target_range_rad": 1.9319332513001148
+          },
+          {
+            "name": "ground_pick",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 37,
+              "ground_pick": 47
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.12696989470019,
+                "last_tick_age_ms": 6,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1279
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 84,
+            "expected_label": "ground_pick",
+            "transition_passed": true,
+            "max_tilt_deg": 34.36354369081441,
+            "final_tilt_deg": 0.6263120891406265,
+            "final_fallen": false,
+            "target_range_rad": 1.7693276048823243
+          },
+          {
+            "name": "roulade",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 51,
+              "roulade": 17
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.205854289866444,
+                "last_tick_age_ms": 9,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1483
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 68,
+            "expected_label": "roulade",
+            "transition_passed": true,
+            "max_tilt_deg": 176.34229852777014,
+            "final_tilt_deg": 0.6578641409791348,
+            "final_fallen": false,
+            "target_range_rad": 4.413520909082877
+          },
+          {
+            "name": "recovery",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.00628348562304,
+                "last_tick_age_ms": 19,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1634
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 0.6710977122462713,
+            "final_tilt_deg": 0.6441688920305916,
+            "final_fallen": false,
+            "target_range_rad": 0.007199605951174415
+          }
+        ],
+        "transitions_passed": true,
+        "upright_at_stage_ends": true
+      },
+      "alpha": {
+        "policies": {
+          "enabled": true,
+          "homed": true,
+          "mode": "walk",
+          "sitting": false,
+          "skills": [
+            "roulade",
+            "kick_left",
+            "kick_right"
+          ],
+          "slots": [
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/alpha_walking.onnx",
+              "slot": "walk"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/alpha_stand.onnx",
+              "slot": "stand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/alpha_sitstand.onnx",
+              "slot": "sitstand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/alpha_ground_pick.onnx",
+              "slot": "ground_pick"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/ball_kick_left.onnx",
+              "slot": "kick_left"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/ball_kick_right.onnx",
+              "slot": "kick_right"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/roulade.onnx",
+              "slot": "roulade"
+            }
+          ]
+        },
+        "logs": "/var/folders/79/85_nvpc15nb2sqkdzmk1k0m80000gn/T/duck-teleop-cvrc0x1p",
+        "stages": [
+          {
+            "name": "idle",
+            "accepted": null,
+            "policy_counts": {
+              "stand": 33
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.126000942278395,
+                "last_tick_age_ms": 12,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 312
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 33,
+            "expected_label": "stand",
+            "transition_passed": true,
+            "max_tilt_deg": 0.4661226462633708,
+            "final_tilt_deg": 0.2409427214649576,
+            "final_fallen": false,
+            "target_range_rad": 0.03509998428310912
+          },
+          {
+            "name": "walk",
+            "accepted": null,
+            "policy_counts": {
+              "stand": 1,
+              "walk": 49
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.023192959161435,
+                "last_tick_age_ms": 8,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 464
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 3.9342854522077357,
+            "final_tilt_deg": 2.2122229197534917,
+            "final_fallen": false,
+            "target_range_rad": 1.3829990109889407
+          },
+          {
+            "name": "stop",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 4,
+              "stand": 13
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.03558089022493,
+                "last_tick_age_ms": 21,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 517
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 17,
+            "expected_label": "stand",
+            "transition_passed": true,
+            "max_tilt_deg": 3.293790121476597,
+            "final_tilt_deg": 0.510311429950998,
+            "final_fallen": false,
+            "target_range_rad": 0.8381547685317577
+          },
+          {
+            "name": "sit",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 1,
+              "sit": 49
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.246309527530734,
+                "last_tick_age_ms": 13,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 670
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": true,
+            "sample_count": 50,
+            "expected_label": "sit",
+            "transition_passed": true,
+            "max_tilt_deg": 6.390028753055796,
+            "final_tilt_deg": 1.5572845523407979,
+            "final_fallen": false,
+            "target_range_rad": 1.648882129300264
+          },
+          {
+            "name": "rise",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "sit": 1,
+              "rise": 17,
+              "stand": 33
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.935441763083666,
+                "last_tick_age_ms": 9,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 823
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 51,
+            "expected_label": "rise",
+            "transition_passed": true,
+            "max_tilt_deg": 4.330899750035994,
+            "final_tilt_deg": 0.31275708038044525,
+            "final_fallen": false,
+            "target_range_rad": 2.076338217568566
+          },
+          {
+            "name": "kick_left",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 25,
+              "kick_left": 9
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.97193365539918,
+                "last_tick_age_ms": 14,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 927
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 34,
+            "expected_label": "kick_left",
+            "transition_passed": true,
+            "max_tilt_deg": 3.7280556593712832,
+            "final_tilt_deg": 0.24180929898975403,
+            "final_fallen": false,
+            "target_range_rad": 1.5407381125984472
+          },
+          {
+            "name": "kick_right",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 25,
+              "kick_right": 9
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.05188589494919,
+                "last_tick_age_ms": 10,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1032
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 34,
+            "expected_label": "kick_right",
+            "transition_passed": true,
+            "max_tilt_deg": 4.435459642894747,
+            "final_tilt_deg": 0.20588715122440293,
+            "final_fallen": false,
+            "target_range_rad": 1.606964467856904
+          },
+          {
+            "name": "ground_pick",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 37,
+              "ground_pick": 47
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.99256155677341,
+                "last_tick_age_ms": 11,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1285
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 84,
+            "expected_label": "ground_pick",
+            "transition_passed": true,
+            "max_tilt_deg": 34.33818230426831,
+            "final_tilt_deg": 0.23536113297472777,
+            "final_fallen": false,
+            "target_range_rad": 1.7648653181890381
+          },
+          {
+            "name": "roulade",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 51,
+              "roulade": 16
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.96531572667796,
+                "last_tick_age_ms": 2,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1490
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 67,
+            "expected_label": "roulade",
+            "transition_passed": true,
+            "max_tilt_deg": 175.2340878472644,
+            "final_tilt_deg": 0.16891761566243668,
+            "final_fallen": false,
+            "target_range_rad": 4.4794595439331335
+          },
+          {
+            "name": "recovery",
+            "accepted": null,
+            "policy_counts": {
+              "stand": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.95656067231987,
+                "last_tick_age_ms": 8,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1644
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "stand",
+            "transition_passed": true,
+            "max_tilt_deg": 0.2024033729616628,
+            "final_tilt_deg": 0.2024033729616628,
+            "final_fallen": false,
+            "target_range_rad": 0.004048766581370877
+          }
+        ],
+        "transitions_passed": true,
+        "upright_at_stage_ends": true
+      },
+      "roller": {
+        "policies": {
+          "enabled": true,
+          "homed": true,
+          "mode": "roller",
+          "sitting": false,
+          "slots": [
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/roller.onnx",
+              "slot": "walk"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "stand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/alpha_sitstand.onnx",
+              "slot": "sitstand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/Users/ichdask/Documents/ChatGPT/microduck/experiments/imx6ull-policy/out/policies/roller_crouch.onnx",
+              "slot": "ground_pick"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "kick_left"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "kick_right"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "roulade"
+            }
+          ]
+        },
+        "logs": "/var/folders/79/85_nvpc15nb2sqkdzmk1k0m80000gn/T/duck-teleop-nlklyzos",
+        "robotd_sha256": "064bf1ecde8ddf91883f08c02c788fefb7a404323a1210758414acb78cb3a280",
+        "bundle_index_sha256": "8752259e5f3d74c6f2f8c5e1ada9920ef71f3cb199142a6d86711bc79d549359",
+        "recorded_at": "2026-09-18T20:16:26.441742+00:00",
+        "stages": [
+          {
+            "name": "idle",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 34
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.12975581079384,
+                "last_tick_age_ms": 2,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 311
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 34,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 103.19358308191089,
+            "final_tilt_deg": 103.10354738923174,
+            "final_fallen": true,
+            "target_range_rad": 0.37503788370011604
+          },
+          {
+            "name": "walk",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.07394910986123,
+                "last_tick_age_ms": 6,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 462
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 103.33771209208335,
+            "final_tilt_deg": 103.33771209208335,
+            "final_fallen": true,
+            "target_range_rad": 0.044271940522019104
+          },
+          {
+            "name": "stop",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 17
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.93089768477108,
+                "last_tick_age_ms": 3,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 514
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 17,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 103.34033357031316,
+            "final_tilt_deg": 103.3241472564529,
+            "final_fallen": true,
+            "target_range_rad": 0.049299721038207345
+          },
+          {
+            "name": "sit",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 1,
+              "sit": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.068799586599006,
+                "last_tick_age_ms": 3,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 666
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": true,
+            "sample_count": 51,
+            "expected_label": "sit",
+            "transition_passed": true,
+            "max_tilt_deg": 103.3245170727475,
+            "final_tilt_deg": 48.2274921419684,
+            "final_fallen": false,
+            "target_range_rad": 11.765822282875298
+          },
+          {
+            "name": "rise",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "sit": 1,
+              "rise": 17,
+              "walk": 33
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.104000579272984,
+                "last_tick_age_ms": 6,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 819
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 51,
+            "expected_label": "rise",
+            "transition_passed": true,
+            "max_tilt_deg": 117.24564764854784,
+            "final_tilt_deg": 103.80833689169005,
+            "final_fallen": true,
+            "target_range_rad": 11.261654483242717
+          },
+          {
+            "name": "ground_pick",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 25,
+              "ground_pick": 59
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.00808135497449,
+                "last_tick_age_ms": 7,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1071
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 84,
+            "expected_label": "ground_pick",
+            "transition_passed": true,
+            "max_tilt_deg": 121.81960828744852,
+            "final_tilt_deg": 105.51673746789015,
+            "final_fallen": true,
+            "target_range_rad": 7.805955391509549
+          },
+          {
+            "name": "recovery",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.216855582969686,
+                "last_tick_age_ms": 6,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 1222
+              },
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 105.47380170293589,
+            "final_tilt_deg": 104.5920328829445,
+            "final_fallen": true,
+            "target_range_rad": 0.028465185074382796
+          }
+        ],
+        "transitions_passed": true,
+        "upright_at_stage_ends": false
+      }
+    }
+  },
+  "board": {
+    "recorded_at": "2026-09-18T20:12:35.029388+00:00",
+    "backend": "board",
+    "scope": "MuJoCo action transitions, not physical task completion",
+    "profiles": {
+      "velstand": {
+        "policies": {
+          "enabled": true,
+          "homed": true,
+          "mode": "walk",
+          "sitting": false,
+          "skills": [
+            "roulade",
+            "kick_left",
+            "kick_right"
+          ],
+          "slots": [
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/velstand.duckmlp",
+              "slot": "walk"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "stand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/alpha_sitstand.duckmlp",
+              "slot": "sitstand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/alpha_ground_pick.duckmlp",
+              "slot": "ground_pick"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/ball_kick_left.duckmlp",
+              "slot": "kick_left"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/ball_kick_right.duckmlp",
+              "slot": "kick_right"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/roulade.duckmlp",
+              "slot": "roulade"
+            }
+          ]
+        },
+        "logs": "/var/folders/79/85_nvpc15nb2sqkdzmk1k0m80000gn/T/duck-teleop-00i81ars",
+        "stages": [
+          {
+            "name": "idle",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 34
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.98743645764535,
+                "last_tick_age_ms": 8,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 311
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 34,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 0.8289719496740454,
+            "final_tilt_deg": 0.5934193403352713,
+            "final_fallen": false,
+            "target_range_rad": 0.07477077467673843
+          },
+          {
+            "name": "walk",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.976111418741844,
+                "last_tick_age_ms": 11,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 463
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 3.405234582799451,
+            "final_tilt_deg": 1.969294804455106,
+            "final_fallen": false,
+            "target_range_rad": 1.5268700728246767
+          },
+          {
+            "name": "stop",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 17
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.10568044503386,
+                "last_tick_age_ms": 19,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 514
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 17,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 4.081093256357054,
+            "final_tilt_deg": 0.7089360718666533,
+            "final_fallen": false,
+            "target_range_rad": 0.8379056526874571
+          },
+          {
+            "name": "sit",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 1,
+              "sit": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.947688088044,
+                "last_tick_age_ms": 6,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 668
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": true,
+            "sample_count": 51,
+            "expected_label": "sit",
+            "transition_passed": true,
+            "max_tilt_deg": 6.2075167010135806,
+            "final_tilt_deg": 1.5659805681966692,
+            "final_fallen": false,
+            "target_range_rad": 1.7165180357598069
+          },
+          {
+            "name": "rise",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "sit": 1,
+              "rise": 17,
+              "walk": 33
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.727427411126286,
+                "last_tick_age_ms": 8,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 821
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 51,
+            "expected_label": "rise",
+            "transition_passed": true,
+            "max_tilt_deg": 4.170091080580608,
+            "final_tilt_deg": 0.6124548813636218,
+            "final_fallen": false,
+            "target_range_rad": 2.106769756464811
+          },
+          {
+            "name": "kick_left",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 27,
+              "kick_left": 8
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.040915807630945,
+                "last_tick_age_ms": 7,
+                "missed": 1,
+                "target_hz": 50.0,
+                "ticks": 926
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 35,
+            "expected_label": "kick_left",
+            "transition_passed": true,
+            "max_tilt_deg": 6.191323385011025,
+            "final_tilt_deg": 0.6757122475880408,
+            "final_fallen": false,
+            "target_range_rad": 1.9981726305484102
+          },
+          {
+            "name": "kick_right",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 25,
+              "kick_right": 9
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.87511661975798,
+                "last_tick_age_ms": 12,
+                "missed": 2,
+                "target_hz": 50.0,
+                "ticks": 1030
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 34,
+            "expected_label": "kick_right",
+            "transition_passed": true,
+            "max_tilt_deg": 7.190430558943896,
+            "final_tilt_deg": 0.7640137485579772,
+            "final_fallen": false,
+            "target_range_rad": 2.124866718051285
+          },
+          {
+            "name": "ground_pick",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 37,
+              "ground_pick": 46
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.99892159188723,
+                "last_tick_age_ms": 5,
+                "missed": 3,
+                "target_hz": 50.0,
+                "ticks": 1283
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 83,
+            "expected_label": "ground_pick",
+            "transition_passed": true,
+            "max_tilt_deg": 34.29661502535612,
+            "final_tilt_deg": 0.6161761604545097,
+            "final_fallen": false,
+            "target_range_rad": 1.7659795873285824
+          },
+          {
+            "name": "roulade",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 51,
+              "roulade": 16
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.98477128968548,
+                "last_tick_age_ms": 18,
+                "missed": 4,
+                "target_hz": 50.0,
+                "ticks": 1487
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 67,
+            "expected_label": "roulade",
+            "transition_passed": true,
+            "max_tilt_deg": 175.55360311869913,
+            "final_tilt_deg": 0.5905979108904192,
+            "final_fallen": false,
+            "target_range_rad": 4.069263943601041
+          },
+          {
+            "name": "recovery",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.87640104607556,
+                "last_tick_age_ms": 19,
+                "missed": 5,
+                "target_hz": 50.0,
+                "ticks": 1641
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 0.6064095262668475,
+            "final_tilt_deg": 0.6002920300380197,
+            "final_fallen": false,
+            "target_range_rad": 0.006819189846730467
+          }
+        ],
+        "transitions_passed": true,
+        "upright_at_stage_ends": true
+      },
+      "alpha": {
+        "policies": {
+          "enabled": true,
+          "homed": true,
+          "mode": "walk",
+          "sitting": false,
+          "skills": [
+            "roulade",
+            "kick_left",
+            "kick_right"
+          ],
+          "slots": [
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/alpha_walking.duckmlp",
+              "slot": "walk"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/alpha_stand.duckmlp",
+              "slot": "stand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/alpha_sitstand.duckmlp",
+              "slot": "sitstand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/alpha_ground_pick.duckmlp",
+              "slot": "ground_pick"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/ball_kick_left.duckmlp",
+              "slot": "kick_left"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/ball_kick_right.duckmlp",
+              "slot": "kick_right"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/roulade.duckmlp",
+              "slot": "roulade"
+            }
+          ]
+        },
+        "logs": "/var/folders/79/85_nvpc15nb2sqkdzmk1k0m80000gn/T/duck-teleop-a3eo3kb8",
+        "stages": [
+          {
+            "name": "idle",
+            "accepted": null,
+            "policy_counts": {
+              "stand": 33
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.100134746375346,
+                "last_tick_age_ms": 15,
+                "missed": 2,
+                "target_hz": 50.0,
+                "ticks": 308
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 33,
+            "expected_label": "stand",
+            "transition_passed": true,
+            "max_tilt_deg": 0.49044229418863383,
+            "final_tilt_deg": 0.23252299465190365,
+            "final_fallen": false,
+            "target_range_rad": 0.05051012635649477
+          },
+          {
+            "name": "walk",
+            "accepted": null,
+            "policy_counts": {
+              "stand": 2,
+              "walk": 49
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.94205059061204,
+                "last_tick_age_ms": 19,
+                "missed": 3,
+                "target_hz": 50.0,
+                "ticks": 462
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 51,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 4.2543296283993435,
+            "final_tilt_deg": 1.8857199373142306,
+            "final_fallen": false,
+            "target_range_rad": 1.430374600551924
+          },
+          {
+            "name": "stop",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 4,
+              "stand": 13
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 47.94591700561766,
+                "last_tick_age_ms": 18,
+                "missed": 4,
+                "target_hz": 50.0,
+                "ticks": 516
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 17,
+            "expected_label": "stand",
+            "transition_passed": true,
+            "max_tilt_deg": 4.415601868875572,
+            "final_tilt_deg": 0.2650970804376965,
+            "final_fallen": false,
+            "target_range_rad": 0.9027748482412374
+          },
+          {
+            "name": "sit",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 1,
+              "sit": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.995801038929606,
+                "last_tick_age_ms": 19,
+                "missed": 6,
+                "target_hz": 50.0,
+                "ticks": 670
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": true,
+            "sample_count": 51,
+            "expected_label": "sit",
+            "transition_passed": true,
+            "max_tilt_deg": 6.304433376434177,
+            "final_tilt_deg": 1.5497693354327002,
+            "final_fallen": false,
+            "target_range_rad": 1.6180558594147447
+          },
+          {
+            "name": "rise",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "sit": 1,
+              "rise": 16,
+              "stand": 33
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.94735940063169,
+                "last_tick_age_ms": 11,
+                "missed": 7,
+                "target_hz": 50.0,
+                "ticks": 825
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "rise",
+            "transition_passed": true,
+            "max_tilt_deg": 4.612892330533042,
+            "final_tilt_deg": 0.2280292534733374,
+            "final_fallen": false,
+            "target_range_rad": 1.9491590438701298
+          },
+          {
+            "name": "kick_left",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 25,
+              "kick_left": 8
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.16500351646838,
+                "last_tick_age_ms": 11,
+                "missed": 8,
+                "target_hz": 50.0,
+                "ticks": 929
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 33,
+            "expected_label": "kick_left",
+            "transition_passed": true,
+            "max_tilt_deg": 4.881709681615894,
+            "final_tilt_deg": 0.27811027072766026,
+            "final_fallen": false,
+            "target_range_rad": 2.2606738836872524
+          },
+          {
+            "name": "kick_right",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 26,
+              "kick_right": 8
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.92775155762079,
+                "last_tick_age_ms": 22,
+                "missed": 9,
+                "target_hz": 50.0,
+                "ticks": 1033
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 34,
+            "expected_label": "kick_right",
+            "transition_passed": true,
+            "max_tilt_deg": 4.361273739225976,
+            "final_tilt_deg": 0.20638597506093923,
+            "final_fallen": false,
+            "target_range_rad": 2.661992736792306
+          },
+          {
+            "name": "ground_pick",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 38,
+              "ground_pick": 46
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.931010323036666,
+                "last_tick_age_ms": 5,
+                "missed": 10,
+                "target_hz": 50.0,
+                "ticks": 1288
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 84,
+            "expected_label": "ground_pick",
+            "transition_passed": true,
+            "max_tilt_deg": 34.38716429798489,
+            "final_tilt_deg": 0.24573531795397663,
+            "final_fallen": false,
+            "target_range_rad": 1.77705099623433
+          },
+          {
+            "name": "roulade",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "stand": 49,
+              "roulade": 16
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.24830213277824,
+                "last_tick_age_ms": 4,
+                "missed": 11,
+                "target_hz": 50.0,
+                "ticks": 1490
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 65,
+            "expected_label": "roulade",
+            "transition_passed": true,
+            "max_tilt_deg": 166.08987905056895,
+            "final_tilt_deg": 0.2324721548610432,
+            "final_fallen": false,
+            "target_range_rad": 4.66494461421024
+          },
+          {
+            "name": "recovery",
+            "accepted": null,
+            "policy_counts": {
+              "stand": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.94273231696231,
+                "last_tick_age_ms": 5,
+                "missed": 14,
+                "target_hz": 50.0,
+                "ticks": 1643
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "stand",
+            "transition_passed": true,
+            "max_tilt_deg": 0.30005026544862723,
+            "final_tilt_deg": 0.30005026544862723,
+            "final_fallen": false,
+            "target_range_rad": 0.011415430176268837
+          }
+        ],
+        "transitions_passed": true,
+        "upright_at_stage_ends": true
+      },
+      "roller": {
+        "policies": {
+          "enabled": true,
+          "homed": true,
+          "mode": "roller",
+          "sitting": false,
+          "slots": [
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/roller.duckmlp",
+              "slot": "walk"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "stand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/alpha_sitstand.duckmlp",
+              "slot": "sitstand"
+            },
+            {
+              "error": null,
+              "origin": "local",
+              "overridden": true,
+              "path": "/home/debian/microduck-policy-bench/gui/roller_crouch.duckmlp",
+              "slot": "ground_pick"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "kick_left"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "kick_right"
+            },
+            {
+              "error": null,
+              "origin": null,
+              "overridden": true,
+              "path": null,
+              "slot": "roulade"
+            }
+          ]
+        },
+        "logs": "/var/folders/79/85_nvpc15nb2sqkdzmk1k0m80000gn/T/duck-teleop-qjs6jug_",
+        "robotd_sha256": "4796e48e2435eb97e274cbcc309cab6cc39b9dd34a811347c226550633c04c62",
+        "bundle_index_sha256": "8752259e5f3d74c6f2f8c5e1ada9920ef71f3cb199142a6d86711bc79d549359",
+        "recorded_at": "2026-09-18T20:16:25.282548+00:00",
+        "stages": [
+          {
+            "name": "idle",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 33
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.846534590675745,
+                "last_tick_age_ms": 10,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 312
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 33,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 105.18064230085909,
+            "final_tilt_deg": 103.0943632790928,
+            "final_fallen": true,
+            "target_range_rad": 0.3296243079005906
+          },
+          {
+            "name": "walk",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.97592664513105,
+                "last_tick_age_ms": 11,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 464
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 103.33603012957364,
+            "final_tilt_deg": 103.33603012957364,
+            "final_fallen": true,
+            "target_range_rad": 0.044193013795959635
+          },
+          {
+            "name": "stop",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 18
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.91603994843708,
+                "last_tick_age_ms": 17,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 518
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 18,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 103.3388921185395,
+            "final_tilt_deg": 103.32380277955066,
+            "final_fallen": true,
+            "target_range_rad": 0.04916374224234099
+          },
+          {
+            "name": "sit",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 1,
+              "sit": 49
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.00921738516511,
+                "last_tick_age_ms": 5,
+                "missed": 0,
+                "target_hz": 50.0,
+                "ticks": 671
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": true,
+            "sample_count": 50,
+            "expected_label": "sit",
+            "transition_passed": true,
+            "max_tilt_deg": 103.32416339094242,
+            "final_tilt_deg": 62.943396739251426,
+            "final_fallen": true,
+            "target_range_rad": 9.058759377431858
+          },
+          {
+            "name": "rise",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "sit": 1,
+              "rise": 16,
+              "walk": 33
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.97703667857937,
+                "last_tick_age_ms": 11,
+                "missed": 1,
+                "target_hz": 50.0,
+                "ticks": 823
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "rise",
+            "transition_passed": true,
+            "max_tilt_deg": 117.92930440715985,
+            "final_tilt_deg": 103.56007080906193,
+            "final_fallen": true,
+            "target_range_rad": 4.343528188270887
+          },
+          {
+            "name": "ground_pick",
+            "accepted": {
+              "accepted": true
+            },
+            "policy_counts": {
+              "walk": 26,
+              "ground_pick": 58
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 50.172356802191054,
+                "last_tick_age_ms": 16,
+                "missed": 2,
+                "target_hz": 50.0,
+                "ticks": 1077
+              },
+              "cpu_temp_c": 56.345,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 84,
+            "expected_label": "ground_pick",
+            "transition_passed": true,
+            "max_tilt_deg": 123.86410370906869,
+            "final_tilt_deg": 105.43366334060052,
+            "final_fallen": true,
+            "target_range_rad": 8.3913617828395
+          },
+          {
+            "name": "recovery",
+            "accepted": null,
+            "policy_counts": {
+              "walk": 50
+            },
+            "health": {
+              "battery": {
+                "percent": 50.00000000000006,
+                "volts": 7.4
+              },
+              "bus": {
+                "consecutive_errors": 0,
+                "startup_failures": 0
+              },
+              "control_loop": {
+                "achieved_hz": 49.86095963441193,
+                "last_tick_age_ms": 18,
+                "missed": 3,
+                "target_hz": 50.0,
+                "ticks": 1229
+              },
+              "cpu_temp_c": 56.962,
+              "healthy": true,
+              "imu": {
+                "consecutive_stale_blocks": 0,
+                "ready": true,
+                "stale_blocks": 0
+              },
+              "motors": {
+                "hottest": "left_hip_yaw",
+                "max_c": 32.0,
+                "mean_c": 32.0
+              }
+            },
+            "sitting": false,
+            "sample_count": 50,
+            "expected_label": "walk",
+            "transition_passed": true,
+            "max_tilt_deg": 105.39400871361492,
+            "final_tilt_deg": 104.57433795735366,
+            "final_fallen": true,
+            "target_range_rad": 0.02753057108338197
+          }
+        ],
+        "transitions_passed": true,
+        "upright_at_stage_ends": false
+      }
+    }
+  },
+  "roller_startup_diagnostic": {
+    "backend": "mac",
+    "first_fall_host_s": 1.101,
+    "first_fall_policy": "homing",
+    "first_fall_tilt_deg": 86.7,
+    "first_walk_host_s": 2.06,
+    "first_walk_tilt_deg": 87.9,
+    "note": "fall begins before actor balancing; wheel height and bearing friction match RL launcher; recovery not validated"
+  }
+}

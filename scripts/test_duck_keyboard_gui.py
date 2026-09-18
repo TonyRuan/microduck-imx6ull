@@ -20,6 +20,7 @@ class CompactGuiTests(unittest.TestCase):
                 self.events = queue.SimpleQueue()
                 self.cancel = threading.Event()
                 self.active_kind = None
+                self.policy_profile = 'velstand'
                 self.skills = set()
                 self.connects = self.closes = 0
                 self.moves = []
@@ -44,6 +45,10 @@ class CompactGuiTests(unittest.TestCase):
                     buttons = {str(w.cget('text')): w for w in widgets(root) if w.winfo_class() == 'TButton'}
                     if phase == 0 and client.connects:
                         original = root.geometry()
+                        self.assertTrue(buttons['P  捡拾 / 轮式蹲伏'].winfo_ismapped())
+                        for w in widgets(root):
+                            if w.winfo_ismapped():
+                                self.assertLessEqual(w.winfo_rooty()+w.winfo_height(), root.winfo_rooty()+root.winfo_height())
                         root.focus_force()
                         root.event_generate('<KeyPress-w>')
                         phase = 1

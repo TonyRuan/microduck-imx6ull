@@ -1,5 +1,8 @@
 # i.MX6ULL + existing MuJoCo body — 2026-09-19
 
+This is the original velstand-only measurement. The later all-model deployment and
+action tests are recorded in [ALL-ACTIONS.md](ALL-ACTIONS.md).
+
 The **control chain runs on the actual board**; the existing `microduck_rl`
 simulator supplies the body. The 60-second run mostly sustained 50 Hz, but had
 two ticks longer than 20 ms. **Locomotion acceptance failed:** forward commands

@@ -91,6 +91,23 @@ body traffic through the proxy's graceful stop before releasing the console; onl
 local child processes are terminated. No physical motor driver is selected by this panel.
 An explicit external socket bypasses session ownership and backend switching.
 
+The managed panel uses a complete, checksum-checked model bundle produced by
+`experiments/imx6ull-policy/prepare_policies.py`: the same ten ONNX actors for Mac
+and specialized FP32 weights for ARM. `policy_bundle.py` defines three explicit
+slot maps (velstand, alpha walking plus independent standing, and roller). The two
+walking profiles include sit/stand, left/right kick, roll, and ground-pick; roller
+maps ground-pick to crouching and disables foot-trained kicks/rolls, matching the
+RL reference launcher's restriction. Timing overrides match the pinned v5 set.
+Selecting roller also selects `scene_rollers.xml`; `duck_roller_body.py` reuses the
+body server with the reference launcher's 0.1385 m placement and 0.003 passive-wheel
+friction loss. It does not change the body protocol or bypass homing. Changing either
+profile or backend restarts the owned body, so wheeled physics cannot accidentally
+accompany a walking controller.
+Readiness checks every reported `robot.policies` slot against its requested file;
+a failed override or fallback is not presented as an available skill. The model
+port and measured acceptance are recorded in
+[ALL-ACTIONS.md](../../experiments/imx6ull-policy/ALL-ACTIONS.md).
+
 `scripts/duck_credentials.py` uses the explicit macOS Keychain backend, never automatic
 selection of a plaintext credential store. A checked remember option resolves missing
 input from a service/account entry scoped to the selected USB path and `debian`. Only
