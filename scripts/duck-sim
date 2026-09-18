@@ -1095,6 +1095,14 @@ case "${1:-up}" in
     shell)   shift; shell "$@" ;;
     down)    down_containers; down ;;
     drive)   shift; drive "$@" ;;
+    keyboard)
+        shift
+        keyboard_default="$REPO/.keyboard-venv/bin/python"
+        [ -x "$keyboard_default" ] || keyboard_default="$RL/.venv/bin/python"
+        keyboard_python="${DUCK_KEYBOARD_PYTHON:-$keyboard_default}"
+        [ -x "$keyboard_python" ] || keyboard_python=python3
+        exec "$keyboard_python" "$REPO/scripts/duck_keyboard.py" "$@"
+        ;;
     ctl)     shift; ctl "$@" ;;
     stand)   stand && sleep 6 && upright ;;
     status)  ctl health | head -4; upright ;;
@@ -1102,5 +1110,5 @@ case "${1:-up}" in
     log)     tail -f "$STATE/robotd.log" ;;
     simlog)  tail -f "$STATE/body.log" ;;
     realtime) realtime ;;
-    *)       die "unknown command '$1'. Try: up, boot, shell, down, stand, drive, monitor, ctl, log, simlog, status, realtime" ;;
+    *)       die "unknown command '$1'. Try: up, boot, shell, down, stand, drive, keyboard, monitor, ctl, log, simlog, status, realtime" ;;
 esac

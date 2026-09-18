@@ -1,0 +1,2 @@
+# Standalone Ctrl events on macOS; other platforms use Tk key events.
+pyobjc-framework-Cocoa>=12.0,<13; sys_platform == 'darwin'

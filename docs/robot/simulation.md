@@ -63,6 +63,7 @@ user did not exist, so its unit never started — a class `up` cannot see at all
 scripts/duck-sim                # a MuJoCo window opens, the duck stands up, and it is yours
 scripts/duck-sim status         # health, and whether it is standing
 scripts/duck-sim drive          # walk forward for 8 s (args: vx vyaw, default 0.15 0)
+scripts/duck-sim keyboard       # focused-window keyboard control and speed sliders
 scripts/duck-sim ctl health     # anything robotctl does, aimed at this duck
 scripts/duck-sim monitor        # robotctl monitor: joints, IMU, ToF, sticks
 scripts/duck-sim log            # robotd's log
@@ -80,6 +81,55 @@ sockets, which is the only thing that is different from a robot: on a board the 
 To talk to it from your own tools, the sockets are `~/.cache/duck-sim/duck-a.sock` (robotd; `duck.sock`
 is a link to whichever duck `ctl` talks to) and `~/.cache/duck-sim/duck-a-tof.sock`, and the body is
 on TCP port 7801.
+
+## Keyboard control
+
+With the simulator running, open another terminal in this checkout and run
+`scripts/duck-sim keyboard`. The local Tk window talks to the same robotd socket as `ctl`;
+it does not reload policies or change the simulated body.
+
+| Key (panel focused) | Action |
+|---|---|
+| W / S | Hold to walk forward / backward |
+| A / D | Hold to turn left / right; combine with W or S |
+| Ctrl | Sit / stand toggle, once per press |
+| Space | Forward roll, once per press |
+| J / K | Left / right kick, once per press |
+| Esc | Stop walking; an already accepted skill finishes under the policy |
+
+Sliders set forward speed (0–0.30 m/s), backward speed (0–0.20 m/s), and turn speed
+(0–1.0 rad/s). Defaults are 0.10, 0.08, and 0.40. Opposite direction keys cancel.
+Release a direction key to stop that direction. On a skill press, held direction keys are
+ignored until released and pressed again. Clicking the skill buttons also works.
+
+The panel sends velocity at 20 Hz. Losing focus clears the input; a UI heartbeat older than
+250 ms becomes zero velocity, and robotd's existing 500 ms deadman still applies if the
+client disappears. Closing the panel sends zero velocity. Connection errors clear input;
+restart the simulator and click **重新连接** to reconnect. Skill refusals appear in the panel.
+
+Use `DUCK_SIM_STATE` and `DUCK_SIM_DUCK` just as for `ctl`, or pass `--socket /path/to/duck.sock`.
+The launcher prefers `.keyboard-venv/bin/python`, falling back to the RL venv's Python;
+override with `DUCK_KEYBOARD_PYTHON=/path/to/python`.
+On Homebrew macOS with Python 3.12, install GUI support with `brew install python-tk@3.12`.
+For standalone Ctrl events on macOS, install the app-local Cocoa event bridge:
+
+```sh
+uv venv .keyboard-venv --python python3.12
+uv pip install --python .keyboard-venv/bin/python -r scripts/requirements-keyboard.txt
+```
+
+On Linux install the matching Python Tk package (typically `python3-tk`). Keyboard input
+only applies while this panel has focus, not while the MuJoCo viewer has focus.
+
+On this Mac, double-click `Start Keyboard.command` in the checkout to start the simulator
+and panel together. This launcher defaults to a separate state directory `~/.cache/duck-keyboard`
+and body port 7811 (camera port 7911). It reuses a running instance at that state directory.
+To stop that instance: `DUCK_SIM_STATE="$HOME/.cache/duck-keyboard" DUCK_SIM_PORT=7811 scripts/duck-sim down`.
+The launcher also resolves the installed RL/BAM editable source roots for its process so
+macOS hidden `.pth` file attributes cannot prevent those source packages from importing.
+
+The client checks can be run without a GUI or robot:
+`python3 -m unittest discover -s scripts -p test_duck_keyboard.py`.
 
 ## Several ducks, each a machine you log into
 
