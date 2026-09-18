@@ -1,3 +1,41 @@
+# Microduck i.MX6ULL 实验扩展
+
+本仓库基于 [Pollen Robotics 的 Microduck](https://github.com/pollen-robotics/microduck)，
+由 TonyRuan 维护 i.MX6ULL 运控移植与 Mac 仿真遥控的实验扩展，**不是上游官方发行版**。
+机器人平台、原始控制软件及步态策略来自上游项目；保留其项目介绍、署名与 [LICENSE](LICENSE)。
+
+## 本仓库新增
+
+- **i.MX6ULL 步态推理**：将 `velstand` FP32 网络专门化为 C/NEON 实现并在野火开发板上验证；
+  这不是通用 ONNX Runtime 的 ARM 移植。见[推理实测报告](experiments/imx6ull-policy/RESULTS.md)。
+- **完整运控硬件在环**：真实开发板运行 `robotd` 控制链路，Mac 上的 MuJoCo 提供模拟传感器和电机响应。
+  见[闭环实测与边界](experiments/imx6ull-policy/HIL.md)。
+- **Mac 键盘遥控 GUI**：支持 Mac / 板端后端切换、USB 与控制服务状态、速度预设、钥匙串记住密码，
+  以及 340×200 置顶迷你模式。见[启动和操作说明](docs/robot/simulation.md#keyboard-control)。
+
+## 当前验证范围
+
+短时硬件在环测试中，完整控制闭环约为 **50 Hz**，但有过超时采样，不能视为零超时或长期实时性保证；
+性能口径与数据见 [HIL 报告](experiments/imx6ull-policy/HIL.md#measurements)。
+**真实电机与物理传感器尚未验证**，也不代表原版机器人的全部功能已经移植到这块板。
+
+板端目前只支持 `velstand` 步态，坐站、翻滚和踢球等可选动作尚未移植；
+低速起步困难与启动回零前倾仍未解决，见[行为诊断](experiments/imx6ull-policy/DIAGNOSIS.md)。
+本仓库的 GitHub Actions 当前未启用；下方 CI 徽章仅代表上游仓库。
+
+## 从这里开始
+
+- 使用键盘面板：[环境准备、启动与后端切换](docs/robot/simulation.md#keyboard-control)。
+- 复现移植实验：[推理构建](experiments/imx6ull-policy/README.md)与[完整闭环构建](experiments/imx6ull-policy/HIL.md#build-and-repeat)。
+- 查看 GUI 集成与回归验证：[测试记录](experiments/imx6ull-policy/GUI-INTEGRATION.md)。
+
+---
+
+## 上游项目介绍 / Upstream README
+
+以下保留上游 Microduck 的项目介绍。其 RK3566 平台、演示视频和功能说明描述的是上游机器人，
+不应理解为本仓库 i.MX6ULL 实验的验收结果。
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c2f7c245-8217-46a1-8d1e-e0ba967cd969" alt="microduck" width="820">
 </p>
@@ -17,7 +55,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml"><img src="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  上游 CI / Upstream CI（非本仓库）：
+  <a href="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml"><img src="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml/badge.svg" alt="Upstream CI"></a>
 </p>
 
 ---
