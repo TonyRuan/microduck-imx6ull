@@ -5,6 +5,9 @@ numerically verified on the actual i.MX6ULL. The walking profiles passed the
 closed-loop action-transition and end-posture checks below. **Roller inference
 works, but roller stability has not passed acceptance on either backend.**
 
+The robotd runs below predate the [NEON build correction](NEON-BUILD.md), which
+has its own matched-kernel numerical validation and action regression results.
+
 Panel operation belongs to [Keyboard control](../../docs/robot/simulation.md#keyboard-control).
 Profile selection, scene settings and session ownership belong to the
 [simulation design](../../docs/design/simulation.md#2-where-the-seam-is).

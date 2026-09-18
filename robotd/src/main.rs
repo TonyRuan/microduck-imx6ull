@@ -1963,8 +1963,12 @@ async fn control_loop<T: RobotIo>(
     #[cfg(feature = "imx6ull-mlp")]
     let mut hil_timings = hil_timing::Recorder::from_env();
     while !state.shutdown.load(Ordering::Relaxed) {
-        ticker.tick().await;
+        let _scheduled = ticker.tick().await;
         let tick_start = Instant::now();
+        #[cfg(feature = "imx6ull-mlp")]
+        let mut tick_profile = hil_timings
+            .as_ref()
+            .and_then(|r| r.begin_tick(tick_start, _scheduled.into_std()));
 
         let read_at = proto::clock::monotonic_ns();
         let fresh = match safety.read() {
@@ -2007,6 +2011,10 @@ async fn control_loop<T: RobotIo>(
         // safety only observes fresh samples, so a repeat cannot feed the fall debounce, and
         // `known_positions` only advances on fresh ones, so a coasted tick cannot pretend to
         // know where the joints have moved to.
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(t) = &mut tick_profile {
+            t.mark(hil_timing::Stage::SensorRead);
+        }
         let sensors = coast.sample(fresh);
 
         if let Some(fresh) = fresh.as_ref() {
@@ -2020,6 +2028,10 @@ async fn control_loop<T: RobotIo>(
             }
         }
         state.fallen.store(safety.fallen(), Ordering::Relaxed);
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(t) = &mut tick_profile {
+            t.mark(hil_timing::Stage::StateEstimation);
+        }
 
         let snapshot = intents.snapshot();
         let (gated, deadman) = safety.gate(snapshot.command, snapshot.twist_age);
@@ -2824,6 +2836,10 @@ async fn control_loop<T: RobotIo>(
             1.0
         };
 
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(t) = &mut tick_profile {
+            t.mark(hil_timing::Stage::ControlPrepare);
+        }
         let (mut targets, gain, moving, policy_label) = match (driving, sensors.as_ref()) {
             // The limp-fall sequence, before anything else — `driving` is false throughout,
             // so without this it would fall through to the hold branch and the robot would
@@ -2859,7 +2875,23 @@ async fn control_loop<T: RobotIo>(
             },
             (true, Some(sensors)) => {
                 let controller = controller.as_mut().expect("driving implies a controller");
-                match controller.step(sensors, &command, snapshot.pose.active, dt, scale_mult) {
+                #[cfg(feature = "imx6ull-mlp")]
+                let result = if let Some(timing) = tick_profile.as_mut() {
+                    controller.step_profiled(
+                        sensors,
+                        &command,
+                        snapshot.pose.active,
+                        dt,
+                        scale_mult,
+                        Some(timing),
+                    )
+                } else {
+                    controller.step(sensors, &command, snapshot.pose.active, dt, scale_mult)
+                };
+                #[cfg(not(feature = "imx6ull-mlp"))]
+                let result =
+                    controller.step(sensors, &command, snapshot.pose.active, dt, scale_mult);
+                match result {
                     Ok(step) => (
                         step.targets,
                         step.gain,
@@ -2886,6 +2918,11 @@ async fn control_loop<T: RobotIo>(
             _ => (hold, policy_cfg.gain, false, "held".into()),
         };
         state.moving.store(moving, Ordering::Relaxed);
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(t) = &mut tick_profile {
+            t.mark(hil_timing::Stage::ControlPostprocess);
+            t.policy(&policy_label);
+        }
 
         // The theremin: a hand's distance in front of the beak, turned into a note and a
         // mouth opening. Before the mouth is written, because while an instrument is up it
@@ -3068,6 +3105,10 @@ async fn control_loop<T: RobotIo>(
                 duck_control::model::mouth_target(snapshot.mouth);
         }
 
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(t) = &mut tick_profile {
+            t.mark(hil_timing::Stage::Auxiliary);
+        }
         match safety.apply(targets, hold, gain) {
             Ok(applied) => limits.extend(applied.limits),
             Err(e) => tracing::warn!(error = %e, "bus write failed"),
@@ -3076,6 +3117,10 @@ async fn control_loop<T: RobotIo>(
         // Only assemble a frame when somebody is subscribed. On a robot nobody usually is,
         // and this would otherwise be a per-tick allocation on the thread that should not
         // be visiting the allocator without a reason.
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(t) = &mut tick_profile {
+            t.mark(hil_timing::Stage::ActuatorWrite);
+        }
         if state.state_tx.receiver_count() > 0
             && let Some(sensors) = sensors.as_ref()
         {
@@ -3121,6 +3166,10 @@ async fn control_loop<T: RobotIo>(
             });
         }
 
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(t) = &mut tick_profile {
+            t.mark(hil_timing::Stage::Publication);
+        }
         let ticks = state.ticks.fetch_add(1, Ordering::Relaxed) + 1;
         state.last_tick_us.store(
             state.started.elapsed().as_micros() as u64,
@@ -3170,7 +3219,11 @@ async fn control_loop<T: RobotIo>(
         }
         #[cfg(feature = "imx6ull-mlp")]
         if let Some(recorder) = &mut hil_timings {
+            if let Some(t) = &mut tick_profile {
+                t.mark(hil_timing::Stage::Maintenance);
+            }
             recorder.record(tick_start, driving);
+            recorder.record_profile(tick_profile, driving);
         }
     }
     tracing::info!("control loop stopped");

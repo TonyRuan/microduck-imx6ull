@@ -432,6 +432,39 @@ impl Controller {
         dt: f64,
         scale_mult: f64,
     ) -> Result<Step, PolicyError> {
+        self.step_inner(
+            sensors,
+            command,
+            body_active,
+            dt,
+            scale_mult,
+            #[cfg(feature = "imx6ull-mlp")]
+            None,
+        )
+    }
+
+    #[cfg(feature = "imx6ull-mlp")]
+    pub fn step_profiled(
+        &mut self,
+        sensors: &duck_control::Sensors,
+        command: &Command,
+        body_active: bool,
+        dt: f64,
+        scale_mult: f64,
+        timing: Option<&mut crate::hil_timing::Tick>,
+    ) -> Result<Step, PolicyError> {
+        self.step_inner(sensors, command, body_active, dt, scale_mult, timing)
+    }
+
+    fn step_inner(
+        &mut self,
+        sensors: &duck_control::Sensors,
+        command: &Command,
+        body_active: bool,
+        dt: f64,
+        scale_mult: f64,
+        #[cfg(feature = "imx6ull-mlp")] mut timing: Option<&mut crate::hil_timing::Tick>,
+    ) -> Result<Step, PolicyError> {
         // Expire windows first, so a tick after the deadline runs the next thing rather
         // than one more frame of a finished move — the prototype checks its timers at the
         // same point relative to inference.
@@ -540,6 +573,11 @@ impl Controller {
 
         self.last_net = Some(net);
 
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(timing) = timing.as_mut() {
+            timing.mark(crate::hil_timing::Stage::PolicySelect);
+        }
+
         let observation = Observation::build(
             &sensors.imu,
             &sensors.positions,
@@ -549,7 +587,16 @@ impl Controller {
             &effective,
         );
 
-        let action = self.policy.infer(&observation, net)?;
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(timing) = timing.as_mut() {
+            timing.mark(crate::hil_timing::Stage::Observation);
+        }
+        let inferred = self.policy.infer(&observation, net);
+        #[cfg(feature = "imx6ull-mlp")]
+        if let Some(timing) = timing.as_mut() {
+            timing.mark(crate::hil_timing::Stage::Inference);
+        }
+        let action = inferred?;
         self.last_action = action;
 
         // Scale and gain follow the active state, recomputed every tick. "Standing tuning"

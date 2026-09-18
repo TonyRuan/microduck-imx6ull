@@ -3,6 +3,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
+#if defined(DUCK_REQUIRE_NEON) && !defined(__ARM_NEON) && !defined(__ARM_NEON__)
+#error "DUCK_REQUIRE_NEON: compiler disabled NEON; select the Cortex-A7 CPU explicitly"
+#endif
+#if defined(__FAST_MATH__) || (defined(__FINITE_MATH_ONLY__) && __FINITE_MATH_ONLY__ > 0)
+#error "duck policy requires NaN/Inf checks; fast/finite-only math is forbidden"
+#endif
 #if defined(__ARM_NEON) || defined(__ARM_NEON__)
 #include <arm_neon.h>
 #endif

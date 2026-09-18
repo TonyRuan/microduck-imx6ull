@@ -1,0 +1,577 @@
+{
+  "recorded_at": "2026-09-18T21:01:49.219085+00:00",
+  "models": {
+    "velstand": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/velstand.onnx",
+        "model_sha256": "1c659be55da94bc5753b707de5c6a3e7c49931e05ca3b6991615cef1a8ba9a45",
+        "weights_sha256": "fbee11054b82d247258d8767bc9c9b7121e2e22337ed57b7ae7dafa6cc16d99a",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 0.000106811523,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9839,
+        "process_cpu_percent": 19.49,
+        "latency_ms": {
+          "mean": 3.824133,
+          "p50": 3.019,
+          "p95": 6.06,
+          "p99": 6.147333,
+          "max": 6.176
+        },
+        "start_lateness_ms": {
+          "p99": 0.878,
+          "max": 3.731
+        },
+        "over_5_ms": 71,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 198000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1580,
+        "checksum": 0.625279702
+      }
+    },
+    "alpha_walking": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/alpha_walking.onnx",
+        "model_sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
+        "weights_sha256": "df973741f7d864bd960d808d7e058a4531523d2b076a87e3eb5e4129b3a7eebe",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 2.43186951e-05,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9839,
+        "process_cpu_percent": 19.23,
+        "latency_ms": {
+          "mean": 3.765079,
+          "p50": 2.977333,
+          "p95": 5.963333,
+          "p99": 6.09,
+          "max": 6.194333
+        },
+        "start_lateness_ms": {
+          "p99": 0.882334,
+          "max": 0.885334
+        },
+        "over_5_ms": 71,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 198000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1584,
+        "checksum": -0.592643065
+      }
+    },
+    "alpha_stand": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/alpha_stand.onnx",
+        "model_sha256": "1569268713e40deea795dd2922dba50d3621e15a872855408b6b1b125b1c094b",
+        "weights_sha256": "181a3c6297c90028c7d59a68eab3771db3ddbf7467dc0b8d9d7364315c9298ad",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 0.000137329102,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9832,
+        "process_cpu_percent": 18.99,
+        "latency_ms": {
+          "mean": 3.711104,
+          "p50": 2.977333,
+          "p95": 5.935667,
+          "p99": 6.050667,
+          "max": 6.077
+        },
+        "start_lateness_ms": {
+          "p99": 0.862,
+          "max": 0.872
+        },
+        "over_5_ms": 65,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 396000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1588,
+        "checksum": -1.79582664
+      }
+    },
+    "alpha_sitstand": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/alpha_sitstand.onnx",
+        "model_sha256": "c6c40e35e726eabd803d633e090d112994f469921152448367953fbaf9799bc8",
+        "weights_sha256": "1286c08ad834e51f8214fa8762ee08f2d892b5ab413e6e814d8da8c3219ff8c9",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 5.14984131e-05,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9835,
+        "process_cpu_percent": 18.49,
+        "latency_ms": {
+          "mean": 3.638315,
+          "p50": 3.216334,
+          "p95": 5.848,
+          "p99": 5.992666,
+          "max": 6.074333
+        },
+        "start_lateness_ms": {
+          "p99": 0.875333,
+          "max": 0.885334
+        },
+        "over_5_ms": 41,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 198000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1588,
+        "checksum": 6.69160957
+      }
+    },
+    "alpha_ground_pick": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/alpha_ground_pick.onnx",
+        "model_sha256": "ffbf5109982ff999b0ba53afe86b9ae731bbec679d67fb7f8ab4c52152c88872",
+        "weights_sha256": "213d600b98d29a59d8b8c350c9d542d86f73568f5fff5952111c08bb4ac5b101",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 4.19616699e-05,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9832,
+        "process_cpu_percent": 18.97,
+        "latency_ms": {
+          "mean": 3.705981,
+          "p50": 2.98,
+          "p95": 6.030667,
+          "p99": 6.41,
+          "max": 6.510333
+        },
+        "start_lateness_ms": {
+          "p99": 0.857334,
+          "max": 6.672667
+        },
+        "over_5_ms": 63,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 198000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1592,
+        "checksum": -7.79603431
+      }
+    },
+    "ball_kick_left": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/ball_kick_left.onnx",
+        "model_sha256": "d6928284dccd3dd61e08bf2f760effa74309fbefd97b2b31afb2a60f526d196a",
+        "weights_sha256": "84ef06e3d03ce67cb60bb8677624ee30e8dd1efa1353a565c5dfbb50359737ec",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 9.15527344e-05,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9839,
+        "process_cpu_percent": 19.32,
+        "latency_ms": {
+          "mean": 3.795476,
+          "p50": 2.989334,
+          "p95": 6.014333,
+          "p99": 6.078333,
+          "max": 6.172667
+        },
+        "start_lateness_ms": {
+          "p99": 0.861,
+          "max": 1.02
+        },
+        "over_5_ms": 72,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 396000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1596,
+        "checksum": 43.8501607
+      }
+    },
+    "ball_kick_right": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/ball_kick_right.onnx",
+        "model_sha256": "147a32c388c6b19111b3ac3b550a9a6dc8b8bf267118af4d8c3712522eedb5af",
+        "weights_sha256": "dd4332ed68ec6616c2a2b3e9fb1c4dd7a807bcd4b1ab892cc2ca9f068bb101b8",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 6.86645508e-05,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9835,
+        "process_cpu_percent": 18.45,
+        "latency_ms": {
+          "mean": 3.638827,
+          "p50": 3.236,
+          "p95": 5.921667,
+          "p99": 6.040333,
+          "max": 6.351667
+        },
+        "start_lateness_ms": {
+          "p99": 0.863,
+          "max": 1.141
+        },
+        "over_5_ms": 41,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 396000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1596,
+        "checksum": -36.0285299
+      }
+    },
+    "roulade": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/roulade.onnx",
+        "model_sha256": "3d60da08fc13f29c1b57f41977aa898132c0d60042100149d8e775affcbca32b",
+        "weights_sha256": "af460be39f4a786c9e2b2804ccc5486df3716ee5da4fc1b7d75d194cfb3e629e",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 6.86645508e-05,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9839,
+        "process_cpu_percent": 19.75,
+        "latency_ms": {
+          "mean": 3.893331,
+          "p50": 2.983666,
+          "p95": 6.092,
+          "p99": 6.171666,
+          "max": 8.190333
+        },
+        "start_lateness_ms": {
+          "p99": 0.874,
+          "max": 1.009333
+        },
+        "over_5_ms": 81,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 198000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1596,
+        "checksum": 15.7061998
+      }
+    },
+    "roller": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/roller.onnx",
+        "model_sha256": "cf05651d2708a2f9364212e86b866c97a70ace8131c492500105e8f28bf99afd",
+        "weights_sha256": "314fe21e3c702aaf42a7b52f4682c21103e3ff872a97ebcb2d04f7c907be483c",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 0.0009765625,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9839,
+        "process_cpu_percent": 19.09,
+        "latency_ms": {
+          "mean": 3.69586,
+          "p50": 2.981667,
+          "p95": 5.643333,
+          "p99": 5.675667,
+          "max": 5.688333
+        },
+        "start_lateness_ms": {
+          "p99": 0.880667,
+          "max": 1.023667
+        },
+        "over_5_ms": 70,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 396000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1596,
+        "checksum": -12.2925011
+      }
+    },
+    "roller_crouch": {
+      "metadata": {
+        "model": "/Users/ichdask/.cache/duck-sim/policies/current/roller_crouch.onnx",
+        "model_sha256": "a1a084be240469c76ac9d3fa44d4792f16d4b1da60398b3ecd3cfc5e2244d990",
+        "weights_sha256": "35e2526efbd0277be6876a04fc89557a112cdf678535f2f3b2f85e4a2a7ff177",
+        "onnxruntime_reference_version": "1.24.4",
+        "numpy_version": "2.4.1",
+        "onnx_version": "1.22.0",
+        "parameters": 197896,
+        "layer_widths": [
+          61,
+          512,
+          256,
+          128,
+          14
+        ],
+        "dense_macs": 196864,
+        "validation_cases": 5120,
+        "validation_seed": 20260919,
+        "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+        "scope": "FP32 graph specialization; no quantization, pruning, or training"
+      },
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 4.19616699e-05,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "timing": {
+        "iterations": 250,
+        "period_ms": 20.0,
+        "wall_s": 4.9862,
+        "process_cpu_percent": 18.71,
+        "latency_ms": {
+          "mean": 3.62414,
+          "p50": 2.967,
+          "p95": 5.593667,
+          "p99": 5.646,
+          "max": 5.806666
+        },
+        "start_lateness_ms": {
+          "p99": 0.883334,
+          "max": 1.633667
+        },
+        "over_5_ms": 65,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 198000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1600,
+        "checksum": 33.6666946
+      }
+    }
+  },
+  "benchmark_sha256": "b49fe3779029b44280f3323ba5f0a7dc670333253f393e67a067c4604b732b0b",
+  "scope": "actor numerical parity and 5-second paced timing; no physical motor I/O"
+}

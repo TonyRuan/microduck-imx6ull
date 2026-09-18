@@ -2,6 +2,7 @@
 
 This is the original velstand-only measurement. The later all-model deployment and
 action tests are recorded in [ALL-ACTIONS.md](ALL-ACTIONS.md).
+These historical robotd measurements predate the [NEON build correction](NEON-BUILD.md).
 
 The **control chain runs on the actual board**; the existing `microduck_rl`
 simulator supplies the body. The 60-second run mostly sustained 50 Hz, but had

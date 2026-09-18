@@ -20,6 +20,15 @@ i.MX6ULL deployment, constraints and measurements are in
 [the HIL record](../../experiments/imx6ull-policy/HIL.md), not a new supported
 production hardware target.
 
+For this experimental executor, 32-bit ARM builds explicitly select Cortex-A7
+and require the compiler's NEON macro. The C kernel refuses a required-NEON build
+that would silently use its scalar fallback, and refuses fast/finite-only math
+because inference must retain NaN/Inf rejection. Host builds remain available
+for testing without this ARMv7 requirement. Toolchain spelling is probed (`cortex_a7` for Zig,
+`cortex-a7` for GCC/Clang); an unsupported target fails rather than disabling
+the requirement. The build correction and its measured effect are recorded in
+[NEON-BUILD.md](../../experiments/imx6ull-policy/NEON-BUILD.md).
+
 One process, one serial bus, one 50 Hz loop. The loop reads all sixteen devices on the bus in
 a single transaction, decides fifteen joint targets, and writes them back. Everything else —
 clients, health, telemetry — hangs off that loop without ever being able to block it.
@@ -245,6 +254,42 @@ wakeup latency is added to the period instead of being absorbed, and the loop dr
 than its own configured rate. `Skip` keeps the original schedule and drops missed ticks, which
 is what a control loop wants. Moving perception out to `mediad` removed most of what competed
 with the loop for free.
+
+#### Optional HIL stage timing
+
+With `imx6ull-mlp`, setting `DUCK_HIL_STAGES=/absolute/output.json` enables
+bounded control-thread profiling. `DUCK_HIL_TIMINGS` independently retains the
+original whole-tick recorder and its three-column format. With stage timing off,
+there are no per-stage clock reads or stage-buffer allocation. No policy, safety
+threshold, scheduler setting or IPC contract changes when timing is enabled.
+
+The stage recorder partitions each completed tick into sensor read; state estimation
+(coasting, fall observation, odometry); control preparation (intents, safety gate,
+homing and mode transitions); policy selection; observation construction; inference;
+control postprocessing; auxiliary motion; actuator write; state-frame publication;
+and maintenance (health counters, slow reads, logging). Skipped stages are zero.
+Publication includes frame construction and queueing, **not IPC-worker serialization**.
+The read/write stages include any blocking backend transport, so HIL timings include
+the proxy, USB and simulator round trips, not a physical servo-bus measurement.
+
+Each boundary samples monotonic wall time and `CLOCK_THREAD_CPUTIME_ID` on the
+dedicated control thread, not process CPU. Unsupported/failed CPU reads yield null,
+never zero. Wall minus thread CPU includes blocking and scheduling/preemption;
+it cannot uniquely identify I/O wait. Clock probes are included in the measured
+intervals; boundary snapshots are sequential, so very short wall/CPU intervals
+can differ by clock-read overhead. Buffer insertion after the final boundary and
+interval sleep are excluded from stage totals. Wake lateness is measured against
+the scheduled instant returned by `interval.tick()`, separately from work duration.
+`wake_late_ms + work_ms > period_ms` is a sampled scheduled-finish miss, not the
+existing daemon `missed` counter or proof that every scheduled release executed.
+
+Rows store policy ID, driving flag, wake lateness and disjoint stage wall/CPU times.
+The preallocated buffer retains at most 6,000 rows (~120 s at 50 Hz); subsequent
+rows increment `dropped_rows`. There is no per-tick JSON or file I/O. Clean shutdown
+serializes the trace; forced termination loses it. Profiling consumes additional
+RAM, including temporary shutdown serialization allocations, and is off by default.
+The experiment's [stage timing record](../../experiments/imx6ull-policy/STAGE-PROFILING.md)
+owns reproduction commands and measured results.
 
 ### 1.5 The invariants
 

@@ -21,6 +21,12 @@ the original baseline, not a restriction on the current panel.
 For hardware sizing, see the separate [CPU, RAM and storage measurement](RESOURCE-USAGE.md).
 That full-controller run is not the actor-only benchmark below.
 
+For per-stage wall/CPU timing and the opt-in measurement harness, see
+[STAGE-PROFILING.md](STAGE-PROFILING.md).
+
+The later robotd NEON build correction and its matched-kernel validation / HIL
+A/B results are recorded in [NEON-BUILD.md](NEON-BUILD.md).
+
 - `policy.h` / `policy.c`: load the specialized weight file and infer 61 floats
   to 14 actions, preserving the project's observation/action order. No heap
   allocation or I/O occurs during inference. Non-finite inputs/outputs fail.

@@ -5,6 +5,8 @@ not a minimum-spec guarantee. The board ran the real controller; an owned Mac
 MuJoCo process supplied sensors and actuator responses. No physical motor/IMU
 driver, camera, audio or wireless application workload was included.
 The model/action acceptance boundaries are in [ALL-ACTIONS.md](ALL-ACTIONS.md).
+This resource snapshot predates the [NEON build correction](NEON-BUILD.md);
+it is not a fresh CPU/RAM measurement of the corrected deployment.
 
 ## Workload and measurement
 
