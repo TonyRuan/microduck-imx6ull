@@ -77,6 +77,32 @@ Four ducks in a chorale should not be four copies of one voice.
 
 An experimental real i.MX6ULL `robotd` connected over USB to this existing body
 protocol is recorded in [the HIL test](../../experiments/imx6ull-policy/HIL.md).
+The keyboard panel can select this board backend or local ONNX inference; its usage is
+in [Keyboard control](../robot/simulation.md#keyboard-control).
+
+The panel's `scripts/duck_backends.py` owns one body process and one control session.
+Switching first clears command intent and closes the previous session, then launches a
+fresh body on a free loopback port. Readiness requires the owned child's post-bind log
+marker, not merely a successful connection to a port another process might own. Mac
+mode owns a `robotd` child and Unix socket; board mode exclusively opens the selected USB
+console and tunnels the existing body protocol and JSON-RPC to the experimental proxy.
+Its serial pump correlates RPC IDs and discards expired queued commands. Closing forwards
+body traffic through the proxy's graceful stop before releasing the console; only owned
+local child processes are terminated. No physical motor driver is selected by this panel.
+An explicit external socket bypasses session ownership and backend switching.
+
+`scripts/duck_credentials.py` uses the explicit macOS Keychain backend, never automatic
+selection of a plaintext credential store. A checked remember option resolves missing
+input from a service/account entry scoped to the selected USB path and `debian`. Only
+successful board starts save or update that entry. Credential work runs outside Tk's
+event loop; read errors block that connection, while save errors are reported without
+discarding a healthy session. Forget removes only that port's entry, not other boards.
+
+On macOS, no active display means a headless body: GLFW can crash when its monitor list
+is empty. The panel labels that mode; reconnecting rechecks display availability. Logs
+are retained in per-session system-temporary directories. This is an experimental
+control-loop panel, not a launcher for the entire robot service stack or a production
+board installation.
 
 `duck_control::io::RobotIo` — six methods, and the only place a simulator is allowed to exist:
 

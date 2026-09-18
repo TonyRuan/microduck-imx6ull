@@ -84,9 +84,51 @@ on TCP port 7801.
 
 ## Keyboard control
 
-With the simulator running, open another terminal in this checkout and run
-`scripts/duck-sim keyboard`. The local Tk window talks to the same robotd socket as `ctl`;
-it does not reload policies or change the simulated body.
+Double-click `Start Keyboard.command`, or run `scripts/duck-sim keyboard`.
+The Tk panel starts its own MuJoCo body and Mac controller. The left sidebar switches
+between **Mac 本地** (ONNX Runtime) and **嵌入式 i.MX6ULL** (board FP32 controller).
+Both managed backends use `velstand`; sensors and actuator output remain in the Mac
+simulator. This does not drive physical motors.
+
+Select the board's USB serial device, enter its `debian` login password and click
+**启动 / 切换后端**. With **记住密码（钥匙串）** checked (the macOS default), a successful
+connection saves the password in macOS Keychain, scoped to `debian` and the selected
+USB device path. Subsequent connections, including after restarting the panel, can leave
+the password field empty. **忘记** removes that device's saved credential; merely
+unchecking the option bypasses saving/loading without deleting an existing entry.
+The field is cleared after submitting; no plaintext password is written to project files
+or passed in process arguments. A manual entry overrides a saved password; failed
+connections never overwrite it. macOS may ask permission to access Keychain. Save failures
+are shown without breaking an otherwise successful connection.
+`MICRODUCK_BOARD_PASSWORD` is an optional environment override. Close other serial
+terminals first. USB presence and authenticated control-service status are displayed
+separately, alongside achieved loop rate and the daemon's cumulative missed-tick counter.
+Detecting a USB device alone does not mean the controller is ready.
+
+Switching clears input, stops the previous owned backend, and starts a fresh simulated
+body on an unused port. Existing simulator windows/services are not taken over. Closing
+the panel stops its owned processes and releases the serial console; session logs remain
+under the displayed system-temporary `duck-teleop-*` directory. A connection failure clears input;
+correct the cause and click **重新连接**. Board startup checks artifact hashes and uploads
+only changed binaries/models into `/home/debian/microduck-policy-bench/gui`; it does not
+install a boot service. Prerequisites: a working sibling `microduck_rl/.venv`, Mac
+`cargo build -p robotd`, and the board artifacts described in
+[the HIL experiment](../../experiments/imx6ull-policy/HIL.md#build-and-repeat).
+Override the RL checkout with `DUCK_SIM_RL` or `--rl`.
+If macOS reports no active display, the panel explicitly labels the simulator as running
+without a 3D window. Wake the display and reconnect to restore the viewer; `--headless`
+also selects this mode for tests. This does not change the physics or control backend.
+
+To control an already running robotd without managing or restarting it, pass
+`--socket /absolute/path/to/duck.sock`. Backend switching is disabled in this mode.
+
+Click **缩小 · 迷你模式** at the top right for a 340×200 always-on-top controller,
+showing connection/loop status, commanded velocity and a stop button. Click **展开 ↗**
+to restore the previous full window size and position. The same backend, simulation and
+speed settings stay active; resizing clears held keys and requires a fresh press.
+Keyboard controls still require this small window to have focus: clicking the simulator
+pauses keyboard input even though the controller stays on top. Expand to change settings
+or inspect connection errors. Closing the mini window performs the normal backend shutdown.
 
 | Key (panel focused) | Action |
 |---|---|
@@ -98,7 +140,8 @@ it does not reload policies or change the simulated body.
 | Esc | Stop walking; an already accepted skill finishes under the policy |
 
 Sliders set forward and backward speed (each 0–0.40 m/s), and turn speed (0–1.0 rad/s).
-The default **仿真实测** preset is 0.30 forward, 0.40 backward, and 0.40 turn;
+The managed **步态起步** preset is 0.40 forward, 0.40 backward, and 0.40 turn.
+The external-socket **仿真实测** preset is 0.30 forward, 0.40 backward, and 0.40 turn;
 **低速试探** restores 0.10, 0.08, and 0.40 for low-speed exploration. Selecting a preset
 stops movement and requires held direction keys to be released and pressed again.
 Preset buttons also support Tab to focus and Enter to activate (Space always rolls).
@@ -110,18 +153,23 @@ With `alpha_walking.onnx` in the local simulator, four-second tests at backward 
 0.08, 0.15, 0.20, and 0.30 m/s barely displaced the duck. At 0.40 it walked about 0.65 m
 backward but also drifted about 0.25 m sideways; forward 0.30 moved about 0.44 m.
 These are observations, not universal gait thresholds or guarantees on a real robot.
-The panel warns about low nonzero speeds and reverse drift; it never silently boosts a
-slider setting or reloads the policy. Opposite direction keys cancel.
+These alpha measurements apply to the older external-socket configuration, not the managed
+velstand backend. With velstand, isolated tests found that forward 0.20 could fail to start
+walking while 0.40 could start it; this issue remains, as does the startup homing pitch.
+The panel shows a policy-specific warning and never silently boosts a slider setting.
+Opposite direction keys cancel.
 Release a direction key to stop that direction. On a skill press, held direction keys are
-ignored until released and pressed again. Clicking the skill buttons also works.
+ignored until released and pressed again. Clicking the skill buttons also works. Board
+mode disables sit/stand, roll and kicks because those models have not been ported; Mac
+mode enables only optional skill models found in the local policy cache. Typing in the
+password field or selecting a backend/device never issues movement or skill commands.
 
 The panel sends velocity at 20 Hz. Losing focus clears the input; a UI heartbeat older than
 250 ms becomes zero velocity, and robotd's existing 500 ms deadman still applies if the
-client disappears. Closing the panel sends zero velocity. Connection errors clear input;
-restart the simulator and click **重新连接** to reconnect. Skill refusals appear in the panel.
+client disappears. Closing the panel sends zero velocity. Skill refusals appear in the panel.
 
-Use `DUCK_SIM_STATE` and `DUCK_SIM_DUCK` just as for `ctl`, or pass `--socket /path/to/duck.sock`.
-The launcher prefers `.keyboard-venv/bin/python`, falling back to the RL venv's Python;
+The launchers prefer `.keyboard-venv/bin/python`; `duck-sim keyboard` falls back to the RL
+venv's Python, while the double-click launcher falls back to system Python 3.12 / Python 3;
 override with `DUCK_KEYBOARD_PYTHON=/path/to/python`.
 On Homebrew macOS with Python 3.12, install GUI support with `brew install python-tk@3.12`.
 For standalone Ctrl events on macOS, install the app-local Cocoa event bridge:
@@ -134,15 +182,11 @@ uv pip install --python .keyboard-venv/bin/python -r scripts/requirements-keyboa
 On Linux install the matching Python Tk package (typically `python3-tk`). Keyboard input
 only applies while this panel has focus, not while the MuJoCo viewer has focus.
 
-On this Mac, double-click `Start Keyboard.command` in the checkout to start the simulator
-and panel together. This launcher defaults to a separate state directory `~/.cache/duck-keyboard`
-and body port 7811 (camera port 7911). It reuses a running instance at that state directory.
-To stop that instance: `DUCK_SIM_STATE="$HOME/.cache/duck-keyboard" DUCK_SIM_PORT=7811 scripts/duck-sim down`.
-The launcher also resolves the installed RL/BAM editable source roots for its process so
-macOS hidden `.pth` file attributes cannot prevent those source packages from importing.
-
 The client checks can be run without a GUI or robot:
-`python3 -m unittest discover -s scripts -p test_duck_keyboard.py`.
+`python3 -m unittest discover -s scripts -p 'test_duck_*.py'`.
+The optional desktop-only compact-window regression is
+`DUCK_GUI_TEST=1 .keyboard-venv/bin/python -m unittest discover -s scripts -p test_duck_keyboard_gui.py`;
+it uses a fake control client and does not connect to a board.
 
 ## Several ducks, each a machine you log into
 

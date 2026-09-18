@@ -32,6 +32,8 @@ class InputTests(unittest.TestCase):
             self.assertIn("低速可能不迈步", speed_hint(forward, backward))
         self.assertIn("侧偏", speed_hint(.3, .4))
         self.assertNotIn("低速可能不迈步", speed_hint(0, 0))
+        self.assertIn('velstand', speed_hint(.4, .4, 'velstand'))
+        self.assertNotIn('alpha', speed_hint(.1, .08, 'velstand'))
 
     def test_motion_and_opposites(self):
         controls = Controls()

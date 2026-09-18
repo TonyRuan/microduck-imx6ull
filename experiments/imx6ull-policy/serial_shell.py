@@ -4,6 +4,7 @@ Set MICRODUCK_BOARD_PASSWORD in the environment or enter it at the prompt.
 Uploads are binary, SHA-256 checked, and confined to an explicitly named path.
 """
 import argparse
+import fcntl
 import getpass
 import hashlib
 import os
@@ -14,17 +15,22 @@ import time
 
 
 class SerialShell:
-    def __init__(self, password, port="/dev/cu.usbmodem1234fire56783", user="debian"):
+    def __init__(self, password, port="/dev/cu.usbmodem1234fire56783", user="debian", cancel=None):
+        self.cancel = cancel
+        self.io_timeout = 30
         self.fd = os.open(port, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
-        self.original = termios.tcgetattr(self.fd)
-        self.pending = b""
-        a = termios.tcgetattr(self.fd)
-        a[0] = a[1] = a[3] = 0
-        a[2] = termios.CS8 | termios.CREAD | termios.CLOCAL
-        a[4] = a[5] = termios.B115200
-        a[6][termios.VMIN] = a[6][termios.VTIME] = 0
-        termios.tcsetattr(self.fd, termios.TCSANOW, a)
+        self.original = None
         try:
+            fcntl.flock(self.fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            fcntl.ioctl(self.fd, termios.TIOCEXCL)
+            self.original = termios.tcgetattr(self.fd)
+            self.pending = b""
+            a = termios.tcgetattr(self.fd)
+            a[0] = a[1] = a[3] = 0
+            a[2] = termios.CS8 | termios.CREAD | termios.CLOCAL
+            a[4] = a[5] = termios.B115200
+            a[6][termios.VMIN] = a[6][termios.VTIME] = 0
+            termios.tcsetattr(self.fd, termios.TCSANOW, a)
             self.send(b"\r")
             self.until(b"login: ")
             self.send(user.encode() + b"\r")
@@ -34,13 +40,20 @@ class SerialShell:
             self.send(b"export PS1='__DUCK_PROMPT__ '; stty -echo\r")
             self.until(b"\r\n__DUCK_PROMPT__ ")
         except BaseException:
-            termios.tcsetattr(self.fd, termios.TCSANOW, self.original)
-            os.close(self.fd)
+            try:
+                if self.original is not None:
+                    termios.tcsetattr(self.fd, termios.TCSANOW, self.original)
+            except OSError:
+                pass
+            finally:
+                os.close(self.fd)
             raise
 
     def send(self, data):
-        end = time.monotonic() + 30
+        end = time.monotonic() + self.io_timeout
         while data:
+            if self.cancel is not None and self.cancel.is_set():
+                raise OSError("serial operation cancelled")
             if time.monotonic() > end:
                 raise TimeoutError("serial write")
             if select.select([], [self.fd], [], .2)[1]:
@@ -53,10 +66,15 @@ class SerialShell:
     def until(self, marker, timeout=30):
         end = time.monotonic() + timeout
         while marker not in self.pending:
+            if self.cancel is not None and self.cancel.is_set():
+                raise OSError("serial operation cancelled")
             if time.monotonic() > end:
                 raise TimeoutError(repr(self.pending[-1000:]))
             if select.select([self.fd], [], [], .2)[0]:
-                self.pending += os.read(self.fd, 65536)
+                data = os.read(self.fd, 65536)
+                if not data:
+                    raise OSError('USB serial disconnected')
+                self.pending += data
         i = self.pending.index(marker) + len(marker)
         result, self.pending = self.pending[:i], self.pending[i:]
         return result
@@ -89,8 +107,10 @@ class SerialShell:
             self.send(b"stty echo\rexit\r")
             time.sleep(.2)
         finally:
-            termios.tcsetattr(self.fd, termios.TCSANOW, self.original)
-            os.close(self.fd)
+            try:
+                termios.tcsetattr(self.fd, termios.TCSANOW, self.original)
+            finally:
+                os.close(self.fd)
 
 
 def password():
