@@ -1,0 +1,341 @@
+{
+  "label": "pilot",
+  "scope": "real ARM robotd with native FP32 policy; USB body/IPC tunnel to existing MuJoCo body_server",
+  "operations": {
+    "hello": 1,
+    "read": 520,
+    "gain": 1,
+    "write": 519,
+    "torque": 1,
+    "slow": 10
+  },
+  "read_request_to_write_ack_on_mac_ms": {
+    "count": 519,
+    "mean": 6.926369151685509,
+    "p50": 7.7520839986391366,
+    "p99": 10.624832997564226,
+    "max": 12.934208032675087
+  },
+  "enabled_host_s": 0.5102321250014938,
+  "wall_s": 10.514324791030958,
+  "robotd_log": "\u001b[2m2025-02-26T08:43:58.183572Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m could not publish this process's identity \u001b[3merror\u001b[0m\u001b[2m=\u001b[0m/run/robotd/identity.json: No such file or directory (os error 2)\r\n\u001b[2m2025-02-26T08:43:58.184067Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m starting \u001b[3mservice\u001b[0m\u001b[2m=\u001b[0m\"robotd\" \u001b[3mbuild\u001b[0m\u001b[2m=\u001b[0m0.14.1 (rev unknown, not a CI build) \u001b[3mexe\u001b[0m\u001b[2m=\u001b[0m/home/debian/microduck-policy-bench/robotd-hil \u001b[3mpid\u001b[0m\u001b[2m=\u001b[0m854\r\n\u001b[2m2025-02-26T08:43:58.185775Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m --sim: the body is in MuJoCo \u001b[3maddr\u001b[0m\u001b[2m=\u001b[0m127.0.0.1:7819\r\n\u001b[2m2025-02-26T08:43:58.186680Z\u001b[0m \u001b[32m INFO\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m serving robot IPC \u001b[3mpath\u001b[0m\u001b[2m=\u001b[0m/home/debian/microduck-policy-bench/robotd-hil.sock \u001b[3mmode\u001b[0m\u001b[2m=\u001b[0m\"660\" \u001b[3mmodel_api\u001b[0m\u001b[2m=\u001b[0m2\r\n\u001b[2m2025-02-26T08:43:58.246814Z\u001b[0m \u001b[32m INFO\u001b[0m \u001b[2mduck_control::sim\u001b[0m\u001b[2m:\u001b[0m simulated body \u001b[3maddr\u001b[0m\u001b[2m=\u001b[0m127.0.0.1:7819 \u001b[3mprotocol\u001b[0m\u001b[2m=\u001b[0m1\r\n\u001b[2m2025-02-26T08:43:58.307540Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m policy loaded \u001b[3mmode\u001b[0m\u001b[2m=\u001b[0m\"walk\" \u001b[3mwalk\u001b[0m\u001b[2m=\u001b[0m/home/debian/microduck-policy-bench/velstand.duckmlp \u001b[3mstand\u001b[0m\u001b[2m=\u001b[0mNone \u001b[3msitstand\u001b[0m\u001b[2m=\u001b[0mNone \u001b[3mground_pick\u001b[0m\u001b[2m=\u001b[0mNone \u001b[3mkicks\u001b[0m\u001b[2m=\u001b[0mfalse \u001b[3mroulade\u001b[0m\u001b[2m=\u001b[0mNone \u001b[3mlimp_fall\u001b[0m\u001b[2m=\u001b[0mfalse\r\n\u001b[2m2025-02-26T08:43:58.307907Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m control loop running \u001b[3mjoints\u001b[0m\u001b[2m=\u001b[0m15 \u001b[3mhz\u001b[0m\u001b[2m=\u001b[0m50.0 \u001b[3mdriving\u001b[0m\u001b[2m=\u001b[0mtrue\r\n\u001b[2m2025-02-26T08:43:58.691914Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mduck_control::safety\u001b[0m\u001b[2m:\u001b[0m torque \u001b[3mon\u001b[0m\u001b[2m=\u001b[0mtrue\r\n\u001b[2m2025-02-26T08:43:58.694095Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m enabling the policy: torque on, ramping to home \u001b[3mHOME_RAMP\u001b[0m\u001b[2m=\u001b[0m2s\r\n\u001b[2m2025-02-26T08:44:00.712117Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m at the home pose; the policy has the robot\r\n\u001b[2m2025-02-26T08:44:08.689139Z\u001b[0m \u001b[32m INFO\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m shutting down\r\n\u001b[2m2025-02-26T08:44:08.896989Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mduck_control::sim\u001b[0m\u001b[2m:\u001b[0m no simulated body; retrying every tick until it answers \u001b[3maddr\u001b[0m\u001b[2m=\u001b[0m127.0.0.1:7819 \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mbus transaction failed: waiting for read: Resource temporarily unavailable (os error 11)\r\n\u001b[2m2025-02-26T08:44:08.897477Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m bus read failed \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mbus transaction failed: waiting for read: Resource temporarily unavailable (os error 11) \u001b[3mconsecutive\u001b[0m\u001b[2m=\u001b[0m1 \u001b[3malso\u001b[0m\u001b[2m=\u001b[0m0\r\n\u001b[2m2025-02-26T08:44:09.117198Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m bus write failed \u001b[3merror\u001b[0m\u001b[2m=\u001b[0mbus transaction failed: waiting for hello: Resource temporarily unavailable (os error 11)\r\n\u001b[2m2025-02-26T08:44:09.120256Z\u001b[0m \u001b[32m INFO\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m control loop stopped\r\n",
+  "board_tick_ms": {
+    "count": 400,
+    "mean": 12.1095866675,
+    "p50": 11.070333,
+    "p99": 14.886667,
+    "max": 430.624
+  },
+  "board_driving_over_20_ms": 1,
+  "health": [
+    {
+      "host_s": 0.5076530000078492,
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": null,
+        "last_tick_age_ms": 7,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 19
+      },
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": false,
+        "stale_blocks": 0
+      }
+    },
+    {
+      "host_s": 1.5102210830082186,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.69797527883819,
+        "last_tick_age_ms": 9,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 69
+      },
+      "cpu_temp_c": 53.877,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 2.5107494580443017,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.99828340893571,
+        "last_tick_age_ms": 9,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 119
+      },
+      "cpu_temp_c": 53.877,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 3.5148365000495687,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.66149074182729,
+        "last_tick_age_ms": 7,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 169
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 4.51709512504749,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.838490049965245,
+        "last_tick_age_ms": 7,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 219
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 5.518072916020174,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.17220872819353,
+        "last_tick_age_ms": 8,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 269
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 6.517772375023924,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.14759124403391,
+        "last_tick_age_ms": 10,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 319
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 7.518139375024475,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.86493250287224,
+        "last_tick_age_ms": 11,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 369
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 8.518543958023656,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.01629614288829,
+        "last_tick_age_ms": 11,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 419
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 9.518627291021403,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.99800659908396,
+        "last_tick_age_ms": 13,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 469
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    }
+  ],
+  "policy_counts": {
+    "homing": 65,
+    "walk": 253
+  },
+  "body": {
+    "first_trunk": [
+      0.0,
+      0.0,
+      0.125
+    ],
+    "last_trunk": [
+      0.0608151905271587,
+      -0.038742818714661384,
+      0.11645850981480287
+    ],
+    "min_trunk_z": 0.04333746882456094,
+    "max_gravity_z": -0.10716070749667551,
+    "sim_seconds_per_wall_second": 0.9997618928872853
+  }
+}

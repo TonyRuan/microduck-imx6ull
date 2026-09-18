@@ -1,0 +1,147 @@
+{
+  "recorded_at": "2026-09-18T17:30:35.784035+00:00",
+  "runs": [
+    {
+      "name": "burst_5000",
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 0.000106811523,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "performance": {
+        "iterations": 5000,
+        "period_ms": 0.0,
+        "wall_s": 8.7212,
+        "process_cpu_percent": 99.5,
+        "latency_ms": {
+          "mean": 1.732655,
+          "p50": 1.702666,
+          "p95": 1.909,
+          "p99": 1.971333,
+          "max": 2.986666
+        },
+        "start_lateness_ms": {
+          "p99": 0.0,
+          "max": 0.0
+        },
+        "over_5_ms": 0,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 792000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1460,
+        "checksum": 8.01510783
+      }
+    },
+    {
+      "name": "paced_50hz_60s",
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 0.000106811523,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "performance": {
+        "iterations": 3000,
+        "period_ms": 20.0,
+        "wall_s": 59.9864,
+        "process_cpu_percent": 19.38,
+        "latency_ms": {
+          "mean": 3.765112,
+          "p50": 3.031,
+          "p95": 5.758,
+          "p99": 5.789333,
+          "max": 9.577333
+        },
+        "start_lateness_ms": {
+          "p99": 0.889336,
+          "max": 7.348334
+        },
+        "over_5_ms": 835,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 198000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1460,
+        "checksum": 5.04230801
+      }
+    },
+    {
+      "name": "paced_50hz_60s_cpu_contention",
+      "validation": {
+        "validation_cases": 5120,
+        "action_values": 71680,
+        "failed_values": 0,
+        "max_abs_error": 0.000106811523,
+        "rejects_nan": true,
+        "rejects_inf": true
+      },
+      "performance": {
+        "iterations": 3000,
+        "period_ms": 20.0,
+        "wall_s": 59.9819,
+        "process_cpu_percent": 9.01,
+        "latency_ms": {
+          "mean": 1.722307,
+          "p50": 1.718334,
+          "p95": 1.728,
+          "p99": 1.732,
+          "max": 13.243
+        },
+        "start_lateness_ms": {
+          "p99": 0.155336,
+          "max": 0.616667
+        },
+        "over_5_ms": 1,
+        "over_20_ms": 0,
+        "deadline_misses": 0,
+        "sampled_cpu_khz": {
+          "min": 792000,
+          "max": 792000
+        },
+        "maxrss_native_units": 1464,
+        "checksum": 5.04230801
+      }
+    }
+  ],
+  "scope": "specialized FP32 actor inference; no motor/sensor I/O; synthetic observations",
+  "environment": "Linux npi 4.19.35-imx6 #1.2307stable SMP PREEMPT Thu Jul 27 09:15:44 UTC 2023 armv7l GNU/Linux\r\nprocessor\t: 0\r\nmodel name\t: ARMv7 Processor rev 5 (v7l)\r\nBogoMIPS\t: 12.00\r\nFeatures\t: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae \r\nCPU implementer\t: 0x41\r\nCPU architecture: 7\r\nCPU variant\t: 0x0\r\nCPU part\t: 0xc07\r\nCPU revision\t: 5\r\n\r\nHardware\t: Freescale i.MX6 UltraLite (Device Tree)\r\nRevision\t: 0000\r\nSerial\t\t: 411071d769216478\r\n              total        used        free      shared  buff/cache   available\r\nMem:            486         114         295           1          76         363\r\nSwap:             0           0           0\r\nondemand\r\n198000 396000 528000 792000 \r\n54494\r\n 16:26:50 up 21 min,  1 user,  load average: 0.03, 0.04, 0.04\r\n",
+  "uploaded_sha256": {
+    "policy-bench-armv7": "4f649380b0859070dc569f91cfdf023e5e81a16e43d3164f8b0df5965535ed50",
+    "weights.bin": "fbee11054b82d247258d8767bc9c9b7121e2e22337ed57b7ae7dafa6cc16d99a",
+    "fixtures.bin": "833498a7686ceed989fc56c3fe806f96e643da9f72d6f83d24050f4478480444",
+    "model.json": "85015899616935e16ae81942f860e22369c173d7bee55cb624bbd739a055f630",
+    "velstand.onnx": "1c659be55da94bc5753b707de5c6a3e7c49931e05ca3b6991615cef1a8ba9a45"
+  },
+  "model": {
+    "model": "/tmp/microduck-usb-bench.JuMqiF/artifacts/velstand.onnx",
+    "model_sha256": "1c659be55da94bc5753b707de5c6a3e7c49931e05ca3b6991615cef1a8ba9a45",
+    "weights_sha256": "fbee11054b82d247258d8767bc9c9b7121e2e22337ed57b7ae7dafa6cc16d99a",
+    "onnxruntime_reference_version": "1.30.0",
+    "numpy_version": "2.5.3",
+    "onnx_version": "1.22.0",
+    "parameters": 197896,
+    "layer_widths": [
+      61,
+      512,
+      256,
+      128,
+      14
+    ],
+    "dense_macs": 196864,
+    "validation_cases": 5120,
+    "validation_seed": 20260919,
+    "tolerance": "abs_error <= 1e-4 + 1e-4 * abs(reference)",
+    "scope": "FP32 graph specialization; no quantization, pruning, or training"
+  },
+  "after": "ondemand\r\n57579\r\n 16:29:37 up 24 min,  1 user,  load average: 0.84, 0.35, 0.16\r\n"
+}

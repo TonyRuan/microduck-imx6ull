@@ -1,0 +1,1841 @@
+{
+  "label": "default60",
+  "scope": "real ARM robotd with native FP32 policy; USB body/IPC tunnel to existing MuJoCo body_server",
+  "operations": {
+    "hello": 1,
+    "read": 3020,
+    "gain": 1,
+    "write": 3019,
+    "torque": 1,
+    "slow": 59
+  },
+  "read_request_to_write_ack_on_mac_ms": {
+    "count": 3019,
+    "mean": 8.038797744100345,
+    "p50": 8.010916004423052,
+    "p99": 10.942374996375293,
+    "max": 17.485624994151294
+  },
+  "enabled_host_s": 0.5102222919813357,
+  "wall_s": 60.640289500006475,
+  "robotd_log": "\u001b[2m2025-02-26T08:46:00.794356Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m could not publish this process's identity \u001b[3merror\u001b[0m\u001b[2m=\u001b[0m/run/robotd/identity.json: No such file or directory (os error 2)\r\n\u001b[2m2025-02-26T08:46:00.794841Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m starting \u001b[3mservice\u001b[0m\u001b[2m=\u001b[0m\"robotd\" \u001b[3mbuild\u001b[0m\u001b[2m=\u001b[0m0.14.1 (rev unknown, not a CI build) \u001b[3mexe\u001b[0m\u001b[2m=\u001b[0m/home/debian/microduck-policy-bench/robotd-hil \u001b[3mpid\u001b[0m\u001b[2m=\u001b[0m906\r\n\u001b[2m2025-02-26T08:46:00.796194Z\u001b[0m \u001b[32m INFO\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m serving robot IPC \u001b[3mpath\u001b[0m\u001b[2m=\u001b[0m/home/debian/microduck-policy-bench/robotd-hil.sock \u001b[3mmode\u001b[0m\u001b[2m=\u001b[0m\"660\" \u001b[3mmodel_api\u001b[0m\u001b[2m=\u001b[0m2\r\n\u001b[2m2025-02-26T08:46:00.797128Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m --sim: the body is in MuJoCo \u001b[3maddr\u001b[0m\u001b[2m=\u001b[0m127.0.0.1:7819\r\n\u001b[2m2025-02-26T08:46:00.857052Z\u001b[0m \u001b[32m INFO\u001b[0m \u001b[2mduck_control::sim\u001b[0m\u001b[2m:\u001b[0m simulated body \u001b[3maddr\u001b[0m\u001b[2m=\u001b[0m127.0.0.1:7819 \u001b[3mprotocol\u001b[0m\u001b[2m=\u001b[0m1\r\n\u001b[2m2025-02-26T08:46:00.918279Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m policy loaded \u001b[3mmode\u001b[0m\u001b[2m=\u001b[0m\"walk\" \u001b[3mwalk\u001b[0m\u001b[2m=\u001b[0m/home/debian/microduck-policy-bench/velstand.duckmlp \u001b[3mstand\u001b[0m\u001b[2m=\u001b[0mNone \u001b[3msitstand\u001b[0m\u001b[2m=\u001b[0mNone \u001b[3mground_pick\u001b[0m\u001b[2m=\u001b[0mNone \u001b[3mkicks\u001b[0m\u001b[2m=\u001b[0mfalse \u001b[3mroulade\u001b[0m\u001b[2m=\u001b[0mNone \u001b[3mlimp_fall\u001b[0m\u001b[2m=\u001b[0mfalse\r\n\u001b[2m2025-02-26T08:46:00.918640Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m control loop running \u001b[3mjoints\u001b[0m\u001b[2m=\u001b[0m15 \u001b[3mhz\u001b[0m\u001b[2m=\u001b[0m50.0 \u001b[3mdriving\u001b[0m\u001b[2m=\u001b[0mtrue\r\n\u001b[2m2025-02-26T08:46:01.302746Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mduck_control::safety\u001b[0m\u001b[2m:\u001b[0m torque \u001b[3mon\u001b[0m\u001b[2m=\u001b[0mtrue\r\n\u001b[2m2025-02-26T08:46:01.305496Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m enabling the policy: torque on, ramping to home \u001b[3mHOME_RAMP\u001b[0m\u001b[2m=\u001b[0m2s\r\n\u001b[2m2025-02-26T08:46:03.322276Z\u001b[0m \u001b[33m WARN\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m at the home pose; the policy has the robot\r\n\u001b[2m2025-02-26T08:47:01.295024Z\u001b[0m \u001b[32m INFO\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m shutting down\r\n\u001b[2m2025-02-26T08:47:01.295703Z\u001b[0m \u001b[32m INFO\u001b[0m \u001b[2mrobotd\u001b[0m\u001b[2m:\u001b[0m control loop stopped\r\n",
+  "board_tick_ms": {
+    "count": 2899,
+    "mean": 11.220127860986546,
+    "p50": 11.192,
+    "p99": 15.361334000000001,
+    "max": 21.892667
+  },
+  "board_driving_over_20_ms": 2,
+  "health": [
+    {
+      "host_s": 0.5077242919942364,
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": null,
+        "last_tick_age_ms": 7,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 19
+      },
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": false,
+        "stale_blocks": 0
+      }
+    },
+    {
+      "host_s": 1.511026582971681,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.699907248993206,
+        "last_tick_age_ms": 9,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 69
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 2.511199457978364,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.96327699141131,
+        "last_tick_age_ms": 9,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 119
+      },
+      "cpu_temp_c": 53.877,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 3.5144344169530086,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.76788259557424,
+        "last_tick_age_ms": 6,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 169
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 4.518941499991342,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.797052600333735,
+        "last_tick_age_ms": 10,
+        "missed": 0,
+        "target_hz": 50.0,
+        "ticks": 219
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 5.524172167002689,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.188238714350604,
+        "last_tick_age_ms": 18,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 269
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 6.5258097919868305,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.82445837057378,
+        "last_tick_age_ms": 19,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 319
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 7.526901124976575,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.11761262299455,
+        "last_tick_age_ms": 20,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 369
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 8.528064582962543,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.87228782764137,
+        "last_tick_age_ms": 21,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 419
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 9.53151041700039,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.267452366397045,
+        "last_tick_age_ms": 5,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 470
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 10.532388457970228,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.80901559798611,
+        "last_tick_age_ms": 5,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 520
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 11.533132499956992,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.08163635693792,
+        "last_tick_age_ms": 5,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 570
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 12.538579666987062,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.8766550321056,
+        "last_tick_age_ms": 11,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 620
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 13.538523124996573,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.14575044267415,
+        "last_tick_age_ms": 11,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 670
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 14.539073832973372,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.81925574017465,
+        "last_tick_age_ms": 11,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 720
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 15.545080582960509,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.95816832708201,
+        "last_tick_age_ms": 17,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 770
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 16.544828207988758,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.16873748246348,
+        "last_tick_age_ms": 16,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 820
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 17.545548624999356,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.92053502409761,
+        "last_tick_age_ms": 18,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 870
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 18.547301124955993,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.186905186644836,
+        "last_tick_age_ms": 18,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 920
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 19.54871683300007,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.99810007219726,
+        "last_tick_age_ms": 20,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 970
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 20.55458895798074,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.70755385832847,
+        "last_tick_age_ms": 7,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1021
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 21.558227957983036,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.23081552191295,
+        "last_tick_age_ms": 11,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1071
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 22.558468666975386,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.94444087363454,
+        "last_tick_age_ms": 9,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1121
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 23.55883770796936,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.08624325674299,
+        "last_tick_age_ms": 11,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1171
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 24.559508082980756,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.89893803413452,
+        "last_tick_age_ms": 8,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1221
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 25.56469179195119,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.15045135406219,
+        "last_tick_age_ms": 17,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1271
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 26.569261416967493,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.84546246781079,
+        "last_tick_age_ms": 22,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1321
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 27.568834082980175,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.13388696872825,
+        "last_tick_age_ms": 21,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1371
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 28.573779208003543,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.938076784786865,
+        "last_tick_age_ms": 6,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1422
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 29.5745950419805,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.01247041337024,
+        "last_tick_age_ms": 6,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1472
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 30.576563042006455,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.96763761005201,
+        "last_tick_age_ms": 6,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1522
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 31.578502041986212,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.01430144239657,
+        "last_tick_age_ms": 10,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1572
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 32.57848133298103,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.02751513332333,
+        "last_tick_age_ms": 12,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1622
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 33.58425512496615,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.958301454399965,
+        "last_tick_age_ms": 17,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1672
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 34.584642666974105,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.10953684380973,
+        "last_tick_age_ms": 17,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1722
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 35.5851500419667,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.94253277563865,
+        "last_tick_age_ms": 17,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1772
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 36.58793745795265,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.82038093653693,
+        "last_tick_age_ms": 23,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1822
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 37.587777707958594,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.22469806085898,
+        "last_tick_age_ms": 21,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1872
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 38.588383374968544,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.22469806085898,
+        "last_tick_age_ms": 22,
+        "missed": 1,
+        "target_hz": 50.0,
+        "ticks": 1922
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 39.59215308295097,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.705809829470084,
+        "last_tick_age_ms": 5,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 1973
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 40.59606166696176,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.20678303483268,
+        "last_tick_age_ms": 7,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2023
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 41.59851566696307,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.95575583559636,
+        "last_tick_age_ms": 10,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2073
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 42.59849008300807,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.12201270347326,
+        "last_tick_age_ms": 12,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2123
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 43.5986737079802,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.981756658819535,
+        "last_tick_age_ms": 10,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2173
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 44.599417874997016,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.91507908446279,
+        "last_tick_age_ms": 10,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2223
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 45.604327042005025,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.09140861949013,
+        "last_tick_age_ms": 15,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2273
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 46.605206207954325,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.997650110444816,
+        "last_tick_age_ms": 18,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2323
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 47.606262999994215,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.68924734430459,
+        "last_tick_age_ms": 18,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2373
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 48.60630291700363,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.342559698482575,
+        "last_tick_age_ms": 19,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2423
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 49.60666766698705,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.99681685266144,
+        "last_tick_age_ms": 14,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2473
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 50.60847549996106,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.975045810450325,
+        "last_tick_age_ms": 21,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2523
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 51.60912208299851,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.80053747142183,
+        "last_tick_age_ms": 20,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2573
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 52.6130567920045,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.110029145623976,
+        "last_tick_age_ms": 5,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2624
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 53.61443183297524,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.96311058667121,
+        "last_tick_age_ms": 5,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2674
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 54.61548233299982,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.15133904075238,
+        "last_tick_age_ms": 7,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2724
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 55.61736974999076,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.889129690857594,
+        "last_tick_age_ms": 7,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2774
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 56.61996979196556,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.84674569167735,
+        "last_tick_age_ms": 11,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2824
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 57.62493612500839,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.28217171657419,
+        "last_tick_age_ms": 16,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2874
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 58.62598666700069,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 49.855402730233216,
+        "last_tick_age_ms": 16,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2924
+      },
+      "cpu_temp_c": 54.494,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    },
+    {
+      "host_s": 59.626593499968294,
+      "battery": {
+        "percent": 50.00000000000006,
+        "volts": 7.4
+      },
+      "bus": {
+        "consecutive_errors": 0,
+        "startup_failures": 0
+      },
+      "control_loop": {
+        "achieved_hz": 50.13060171802526,
+        "last_tick_age_ms": 19,
+        "missed": 2,
+        "target_hz": 50.0,
+        "ticks": 2974
+      },
+      "cpu_temp_c": 55.111,
+      "healthy": true,
+      "imu": {
+        "consecutive_stale_blocks": 0,
+        "ready": true,
+        "stale_blocks": 0
+      },
+      "motors": {
+        "hottest": "left_hip_yaw",
+        "max_c": 32.0,
+        "mean_c": 32.0
+      }
+    }
+  ],
+  "policy_counts": {
+    "homing": 62,
+    "walk": 1801
+  },
+  "body": {
+    "first_trunk": [
+      0.0,
+      0.0,
+      0.125
+    ],
+    "last_trunk": [
+      0.050654424225263416,
+      -0.032955837349890105,
+      0.11645093278215447
+    ],
+    "min_trunk_z": 0.04353690986988931,
+    "max_gravity_z": -0.10716070749667551,
+    "sim_seconds_per_wall_second": 1.0002646547358367
+  }
+}

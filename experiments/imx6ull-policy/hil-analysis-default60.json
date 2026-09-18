@@ -1,0 +1,113 @@
+{
+  "label": "default60",
+  "phases": {
+    "stand": {
+      "seconds": 14.979403165983967,
+      "displacement_m": [
+        0.0632459618057273,
+        -0.04194478072368077,
+        -0.008549015761716142
+      ],
+      "horizontal_net_m": 0.0758908183819965,
+      "forward_projected_m": 0.0632459618057273,
+      "applied_abs_max": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "forward": {
+      "seconds": 20.98037150001619,
+      "displacement_m": [
+        -0.004256344134130022,
+        0.009726681472605164,
+        -0.0015288191698446252
+      ],
+      "horizontal_net_m": 0.010617193501941255,
+      "forward_projected_m": 0.002166339325171403,
+      "applied_abs_max": [
+        0.19999999999999996,
+        0.0,
+        0.0
+      ]
+    },
+    "turn": {
+      "seconds": 11.981317166995723,
+      "displacement_m": [
+        -0.005670315926740652,
+        0.002109918163831496,
+        0.0011267656903825307
+      ],
+      "horizontal_net_m": 0.006050143582355279,
+      "forward_projected_m": -0.003861923722865321,
+      "applied_abs_max": [
+        0.19999999999999996,
+        0.0,
+        0.2999999999999999
+      ]
+    },
+    "stop": {
+      "seconds": 11.980503124999814,
+      "displacement_m": [
+        -0.0026985979487256437,
+        -0.0028131089467727972,
+        0.0004243799139229676
+      ],
+      "horizontal_net_m": 0.0038982063612999517,
+      "forward_projected_m": -0.0038151448389916872,
+      "applied_abs_max": [
+        1.4289669715346047e-59,
+        0.0,
+        0.2999999999999999
+      ]
+    }
+  },
+  "steady_after_5s": {
+    "min_trunk_z_m": 0.11481401505262616,
+    "max_gravity_z": -0.9997051191230243
+  },
+  "finite_targets": true,
+  "last_health": {
+    "host_s": 59.626593499968294,
+    "battery": {
+      "percent": 50.00000000000006,
+      "volts": 7.4
+    },
+    "bus": {
+      "consecutive_errors": 0,
+      "startup_failures": 0
+    },
+    "control_loop": {
+      "achieved_hz": 50.13060171802526,
+      "last_tick_age_ms": 19,
+      "missed": 2,
+      "target_hz": 50.0,
+      "ticks": 2974
+    },
+    "cpu_temp_c": 55.111,
+    "healthy": true,
+    "imu": {
+      "consecutive_stale_blocks": 0,
+      "ready": true,
+      "stale_blocks": 0
+    },
+    "motors": {
+      "hottest": "left_hip_yaw",
+      "max_c": 32.0,
+      "mean_c": 32.0
+    }
+  },
+  "last_movement": {
+    "applied": [
+      1.5952707857318604e-117,
+      0.0,
+      3.3491413395342217e-59
+    ],
+    "requested": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "safety_limits": []
+}

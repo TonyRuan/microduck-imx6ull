@@ -1,0 +1,16 @@
+[policy]
+enabled = true
+walk = "/home/debian/microduck-policy-bench/velstand.duckmlp"
+stand = "none"
+sitstand = "none"
+ground_pick = "none"
+kick_left = "none"
+kick_right = "none"
+roulade = "none"
+
+[audio]
+enabled = false
+pet_detect = false
+
+[chorale]
+accept = false

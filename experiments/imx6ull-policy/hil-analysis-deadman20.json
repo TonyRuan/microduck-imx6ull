@@ -1,0 +1,125 @@
+{
+  "label": "deadman20",
+  "phases": {
+    "stand": {
+      "seconds": 4.978846375015564,
+      "displacement_m": [
+        0.046895125875922976,
+        -0.03340639627559277,
+        -0.00854662089797674
+      ],
+      "horizontal_net_m": 0.057577253694845495,
+      "forward_projected_m": 0.046895125875922976,
+      "applied_abs_max": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "forward": {
+      "seconds": 6.980457582976669,
+      "displacement_m": [
+        0.002840593786970505,
+        0.006418593440947484,
+        -0.0015322948423650423
+      ],
+      "horizontal_net_m": 0.00701906794544329,
+      "forward_projected_m": 0.005717465704318633,
+      "applied_abs_max": [
+        0.19999999999999996,
+        0.0,
+        0.0
+      ]
+    },
+    "turn": {
+      "seconds": 3.9803453750209883,
+      "displacement_m": [
+        -0.006384098931547455,
+        -0.0036128282684753793,
+        0.0015471379377602068
+      ],
+      "horizontal_net_m": 0.007335478666404815,
+      "forward_projected_m": -0.007334274967197335,
+      "applied_abs_max": [
+        0.19999999999999996,
+        0.0,
+        0.29999999999954907
+      ]
+    },
+    "stop": {
+      "seconds": 3.980315209017135,
+      "displacement_m": [
+        -0.0001825267236730474,
+        -0.0002399527925038905,
+        -2.685665252370739e-05
+      ],
+      "horizontal_net_m": 0.0003014852359324286,
+      "forward_projected_m": -0.000278351619248065,
+      "applied_abs_max": [
+        1.037378892220249e-20,
+        0.0,
+        1.0352619520170276e-08
+      ]
+    }
+  },
+  "steady_after_5s": {
+    "min_trunk_z_m": 0.11481739992038377,
+    "max_gravity_z": -0.9997452487156823
+  },
+  "finite_targets": true,
+  "last_health": {
+    "host_s": 19.544815792003646,
+    "battery": {
+      "percent": 50.00000000000006,
+      "volts": 7.4
+    },
+    "bus": {
+      "consecutive_errors": 0,
+      "startup_failures": 0
+    },
+    "control_loop": {
+      "achieved_hz": 49.82653718200602,
+      "last_tick_age_ms": 17,
+      "missed": 1,
+      "target_hz": 50.0,
+      "ticks": 970
+    },
+    "cpu_temp_c": 54.494,
+    "healthy": true,
+    "imu": {
+      "consecutive_stale_blocks": 0,
+      "ready": true,
+      "stale_blocks": 0
+    },
+    "motors": {
+      "hottest": "left_hip_yaw",
+      "max_c": 32.0,
+      "mean_c": 32.0
+    }
+  },
+  "last_movement": {
+    "applied": [
+      4.304619864096438e-40,
+      0.0,
+      4.295835587764786e-28
+    ],
+    "limited_by": [
+      "deadman"
+    ],
+    "requested": [
+      0.0,
+      0.0,
+      0.3
+    ]
+  },
+  "safety_limits": [
+    "deadman"
+  ],
+  "deadman": {
+    "first_reported_gate_s_after_cutoff": 0.5161161249852739,
+    "first_below_1e_6_s_after_cutoff": 1.6155779589898884,
+    "samples_after_2s": 126,
+    "all_below_1e_6_after_2s": true,
+    "note": "command EMA remains after the deadman gate; this is a smooth stop, not instantaneous zero or emergency stop"
+  }
+}
