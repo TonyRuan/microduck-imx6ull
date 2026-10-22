@@ -1,44 +1,46 @@
-# Microduck i.MX6ULL 实验扩展
+# Microduck i.MX6ULL Experimental Extension
 
-本仓库基于 [Pollen Robotics 的 Microduck](https://github.com/pollen-robotics/microduck)，
-由 TonyRuan 维护 i.MX6ULL 运控移植与 Mac 仿真遥控的实验扩展，**不是上游官方发行版**。
-机器人平台、原始控制软件及步态策略来自上游项目；保留其项目介绍、署名与 [LICENSE](LICENSE)。
+[English](README.md) | [简体中文](README.zh-CN.md)
 
-## 本仓库新增
+This repository is based on [Pollen Robotics' Microduck](https://github.com/pollen-robotics/microduck).
+TonyRuan maintains experimental extensions for i.MX6ULL locomotion control and Mac simulation remote control. **This is not an official upstream release.**
+The robot platform, original control software, and gait policies come from the upstream project; its introduction, credits, and [LICENSE](LICENSE) are preserved.
 
-- **i.MX6ULL 全动作推理**：将当前 v5 策略集的 10 个 FP32 网络专门化为 C/NEON 实现并在野火开发板上验证；
-  这不是通用 ONNX Runtime 的 ARM 移植。见[全动作移植实测](experiments/imx6ull-policy/ALL-ACTIONS.md)。
-- **完整运控硬件在环**：真实开发板运行 `robotd` 控制链路，Mac 上的 MuJoCo 提供模拟传感器和电机响应。
-  见[闭环实测与边界](experiments/imx6ull-policy/HIL.md)。
-- **Mac 键盘遥控 GUI**：支持 Mac / 板端后端切换、USB 与控制服务状态、速度预设、钥匙串记住密码，
-  三组策略配置、P 键捡拾／轮式蹲伏，以及 340×200 置顶迷你模式。
-  见[启动和操作说明](docs/robot/simulation.md#keyboard-control)。
+## Additions in this repository
 
-## 当前验证范围
+- **i.MX6ULL inference for all actions:** the 10 FP32 networks in the current v5 policy set are specialized into C/NEON implementations and validated on a Wildfire development board.
+  This is not a port of a general-purpose ONNX Runtime to ARM. See the [all-action port measurements](experiments/imx6ull-policy/ALL-ACTIONS.md).
+- **Hardware-in-the-loop testing of the full controller:** a real development board runs the `robotd` control chain, while MuJoCo on a Mac provides simulated sensor readings and motor responses.
+  See the [closed-loop measurements and limitations](experiments/imx6ull-policy/HIL.md).
+- **Mac keyboard remote-control GUI:** switch between Mac and board backends; view USB and control-service status; use speed presets and Keychain password storage;
+  choose among three policy configurations; use P for pick-up / wheeled crouching; and enable a 340×200 always-on-top mini mode.
+  See the [startup and control instructions](docs/robot/simulation.md#keyboard-control).
 
-短时硬件在环测试中，完整控制闭环约为 **50 Hz**，但有过超时采样，不能视为零超时或长期实时性保证；
-性能口径与数据见 [HIL 报告](experiments/imx6ull-policy/HIL.md#measurements)。
-**真实电机与物理传感器尚未验证**，也不代表原版机器人的全部功能已经移植到这块板。
+## Current validation scope
 
-板端现已接入站立、行走、坐起、翻滚、左右踢球、捡拾及轮式／蹲伏模型；
-**足式动作通过短时闭环测试，轮式稳定性尚未通过验收**，仍保留为实验模式。
-模型一致性、闭环动作切换与真实物理任务成功是不同的验收层级，见[验证范围](experiments/imx6ull-policy/ALL-ACTIONS.md)。
-低速起步困难与启动回零前倾仍未解决，见[行为诊断](experiments/imx6ull-policy/DIAGNOSIS.md)。
-本仓库的 GitHub Actions 当前未启用；下方 CI 徽章仅代表上游仓库。
+In short hardware-in-the-loop tests, the complete control loop ran at about **50 Hz**, with some timeout samples. This is not a guarantee of zero timeouts or long-term real-time performance.
+See the [HIL report](experiments/imx6ull-policy/HIL.md#measurements) for measurement definitions and data.
+**Real motors and physical sensors have not been validated.** These results also do not mean that every feature of the original robot has been ported to this board.
 
-## 从这里开始
+The board backend now integrates standing, walking, sit/stand, rolling, left/right kicks, pick-up, and wheeled / crouching models.
+**Legged actions passed short closed-loop tests; wheeled stability has not passed acceptance testing** and remains experimental.
+Model equivalence, closed-loop action switching, and success at real physical tasks are separate acceptance levels; see the [validation scope](experiments/imx6ull-policy/ALL-ACTIONS.md).
+Difficulty starting at low speeds and forward tipping during startup zeroing remain unresolved; see the [behavior diagnosis](experiments/imx6ull-policy/DIAGNOSIS.md).
+GitHub Actions is currently disabled in this repository; the CI badge below refers only to the upstream repository.
 
-- 使用键盘面板：[环境准备、启动与后端切换](docs/robot/simulation.md#keyboard-control)。
-- 复现移植实验：[推理构建](experiments/imx6ull-policy/README.md)与[完整闭环构建](experiments/imx6ull-policy/HIL.md#build-and-repeat)。
-- 查看 GUI 集成与回归验证：[测试记录](experiments/imx6ull-policy/GUI-INTEGRATION.md)。
-- 查看硬件降本参考：[CPU、RAM 与存储实测](experiments/imx6ull-policy/RESOURCE-USAGE.md)。
+## Start here
+
+- Use the keyboard panel: [environment setup, startup, and backend switching](docs/robot/simulation.md#keyboard-control).
+- Reproduce the port experiments: [inference build](experiments/imx6ull-policy/README.md) and [full closed-loop build](experiments/imx6ull-policy/HIL.md#build-and-repeat).
+- Review GUI integration and regression validation: [test record](experiments/imx6ull-policy/GUI-INTEGRATION.md).
+- Review hardware cost-reduction data: [CPU, RAM, and storage measurements](experiments/imx6ull-policy/RESOURCE-USAGE.md).
 
 ---
 
-## 上游项目介绍 / Upstream README
+## Upstream project introduction / Upstream README
 
-以下保留上游 Microduck 的项目介绍。其 RK3566 平台、演示视频和功能说明描述的是上游机器人，
-不应理解为本仓库 i.MX6ULL 实验的验收结果。
+The upstream Microduck introduction is preserved below. Its RK3566 platform, demonstration videos, and feature descriptions refer to the upstream robot;
+they are not acceptance results for this repository's i.MX6ULL experiments.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c2f7c245-8217-46a1-8d1e-e0ba967cd969" alt="microduck" width="820">
@@ -59,7 +61,7 @@
 </p>
 
 <p align="center">
-  上游 CI / Upstream CI（非本仓库）：
+  Upstream CI (not this repository):
   <a href="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml"><img src="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml/badge.svg" alt="Upstream CI"></a>
 </p>
 
